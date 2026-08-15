@@ -124,7 +124,8 @@ def generate_comparison_table(eval_results):
     table = []
     table.append("| Model | Mean Precision@10 | Mean Recall@10 | Mean F1-score@10 | mAP (Full Gallery) | Avg Retrieval Time |")
     table.append("| :--- | :---: | :---: | :---: | :---: | :---: |")
-    for model in ['M1', 'M2', 'M3', 'M4']:
+    models = [m for m in ['M1', 'M2', 'M3', 'M4', 'M5'] if m in eval_results]
+    for model in models:
         m = eval_results[model]
         table.append(f"| **{model}** | {m['mean_precision']:.4f} | {m['mean_recall']:.4f} | {m['mean_f1']:.4f} | {m['mAP']:.4f} | {m['mean_time']*1000:.2f} ms |")
     return "\n".join(table)

@@ -1,3 +1,17 @@
 __pycache__/
 *.pyc
 .DS_Store
+
+# Part 2 Generated Binary Artifacts & Plots
+output/part2/adaptive_weight_mlp.pt
+output/part2/part2_results.pkl
+output/part2/plots/
+
+# Local settings and temporary files
+.env
+.vscode/
+.idea/
+*.tmp
+*.temp
+*.log
+.ipynb_checkpoints
