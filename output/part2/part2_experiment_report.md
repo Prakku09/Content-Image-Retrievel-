@@ -38,7 +38,7 @@ This report presents the experimental results of Model M5, the PyTorch MLP adapt
 | **M2** | 0.4680 | 0.0520 | 0.0936 | 0.3508 | 0.09 ms |
 | **M3** | 0.6990 | 0.0777 | 0.1398 | 0.4652 | 0.10 ms |
 | **M4** | 0.6730 | 0.0748 | 0.1346 | 0.4340 | 0.11 ms |
-| **M5** | 0.7200 | 0.0800 | 0.1440 | 0.4845 | 0.23 ms |
+| **M5** | 0.7200 | 0.0800 | 0.1440 | 0.4845 | 0.27 ms |
 
 ### Key Findings
 - **M5 vs M3 (Equal Fusion)**: Fusing color and texture with adaptive weights learns category-level importance.

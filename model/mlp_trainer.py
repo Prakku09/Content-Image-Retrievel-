@@ -7,7 +7,11 @@ from pathlib import Path
 import pickle
 import config
 import config_part2
-from mlp_model import AdaptiveWeightMLP
+try:
+    from model.mlp_model import AdaptiveWeightMLP
+except ImportError:
+    from mlp_model import AdaptiveWeightMLP
+
 
 class TripletDataset(Dataset):
     """

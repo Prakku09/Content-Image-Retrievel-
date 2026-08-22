@@ -1,9 +1,11 @@
 import os
 from pathlib import Path
-from dotenv import load_dotenv
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
-# Load environment variables from a .env file if present
-load_dotenv()
 
 # Configurable path to the external dataset directory
 # Can be overridden by setting the environment variable COREL_DATASET_PATH
