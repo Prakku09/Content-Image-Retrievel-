@@ -4,7 +4,7 @@ from PIL import Image
 import numpy as np
 from pathlib import Path
 import config
-import config_part2
+
 
 # Set premium styling
 sns.set_theme(style="white")

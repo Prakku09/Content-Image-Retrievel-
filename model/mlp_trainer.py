@@ -6,7 +6,7 @@ from torch.utils.data import Dataset, DataLoader
 from pathlib import Path
 import pickle
 import config
-import config_part2
+
 try:
     from model.mlp_model import AdaptiveWeightMLP
 except ImportError:
@@ -36,7 +36,7 @@ class TripletDataset(Dataset):
             self.d_texture_neg[idx]
         )
 
-def get_internal_split(gallery_labels, seed=config_part2.PART2_SEED):
+def get_internal_split(gallery_labels, seed=config.PART2_SEED):
     """
     Deterministically splits the 900 gallery images into 700 training (70/cat)
     and 200 validation (20/cat) indices.
@@ -60,12 +60,12 @@ def get_internal_split(gallery_labels, seed=config_part2.PART2_SEED):
         rng.shuffle(shuffled)
         
         # 70 for training, 20 for validation
-        train_indices.extend(shuffled[:config_part2.INTERNAL_TRAIN_PER_CAT])
-        val_indices.extend(shuffled[config_part2.INTERNAL_TRAIN_PER_CAT:])
+        train_indices.extend(shuffled[:config.INTERNAL_TRAIN_PER_CAT])
+        val_indices.extend(shuffled[config.INTERNAL_TRAIN_PER_CAT:])
         
     return sorted(train_indices), sorted(val_indices)
 
-def build_triplets(indices, color_feats, texture_feats, labels, num_p=5, num_n=10, seed=config_part2.PART2_SEED):
+def build_triplets(indices, color_feats, texture_feats, labels, num_p=5, num_n=10, seed=config.PART2_SEED):
     """
     Generates training/validation triplets (q, p, n) and precalculates distances.
     """
@@ -133,7 +133,7 @@ def build_triplets(indices, color_feats, texture_feats, labels, num_p=5, num_n=1
         np.array(d_texture_neg_list)
     )
 
-def train_mlp(data_path=None, seed=config_part2.PART2_SEED):
+def train_mlp(data_path=None, seed=config.PART2_SEED):
     """
     Orchestrates the entire training protocol, splits the gallery, builds triplets,
     trains the PyTorch model with early stopping, and returns training history.
@@ -165,15 +165,15 @@ def train_mlp(data_path=None, seed=config_part2.PART2_SEED):
     train_dataset = TripletDataset(*train_triplets)
     val_dataset = TripletDataset(*val_triplets)
     
-    train_loader = DataLoader(train_dataset, batch_size=config_part2.BATCH_SIZE, shuffle=True)
-    val_loader = DataLoader(val_dataset, batch_size=config_part2.BATCH_SIZE, shuffle=False)
+    train_loader = DataLoader(train_dataset, batch_size=config.BATCH_SIZE, shuffle=True)
+    val_loader = DataLoader(val_dataset, batch_size=config.BATCH_SIZE, shuffle=False)
     
     print(f"Constructed {len(train_dataset)} training triplets and {len(val_dataset)} validation triplets.")
     
     # 4. Instantiate Model, Optimizer, and Loss params
     model = AdaptiveWeightMLP()
-    optimizer = optim.Adam(model.parameters(), lr=config_part2.LEARNING_RATE)
-    margin = config_part2.MARGIN
+    optimizer = optim.Adam(model.parameters(), lr=config.LEARNING_RATE)
+    margin = config.MARGIN
     
     # Early stopping trackers
     best_val_loss = float('inf')
@@ -189,7 +189,7 @@ def train_mlp(data_path=None, seed=config_part2.PART2_SEED):
     
     # 5. Training Loop
     print("\nTraining MLP adaptive weighting model...")
-    for epoch in range(1, config_part2.EPOCHS + 1):
+    for epoch in range(1, config.EPOCHS + 1):
         model.train()
         train_loss_accum = 0.0
         
@@ -238,7 +238,7 @@ def train_mlp(data_path=None, seed=config_part2.PART2_SEED):
         
         # Print progress
         if epoch % 5 == 0 or epoch == 1:
-            print(f"  Epoch {epoch:2d}/{config_part2.EPOCHS} | Train Loss: {train_loss:.6f} | Val Loss: {val_loss:.6f}")
+            print(f"  Epoch {epoch:2d}/{config.EPOCHS} | Train Loss: {train_loss:.6f} | Val Loss: {val_loss:.6f}")
             
         # Early Stopping check
         if val_loss < best_val_loss:
@@ -256,7 +256,7 @@ def train_mlp(data_path=None, seed=config_part2.PART2_SEED):
     model.load_state_dict(best_weights)
     
     # Save the trained model
-    model_save_path = config_part2.PART2_OUTPUT_DIR / "adaptive_weight_mlp.pt"
+    model_save_path = config.PART2_OUTPUT_DIR / "adaptive_weight_mlp.pt"
     torch.save(model.state_dict(), model_save_path)
     print(f"Best model weights saved to: {model_save_path}")
     
