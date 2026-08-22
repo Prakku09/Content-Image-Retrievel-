@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corel-1K CBIR Visual Assets Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0b0f19;
+      --bg-secondary: #111827;
+      --bg-card: #1e293b;
+      --bg-card-hover: #26354a;
+      --accent: #10b981;
+      --accent-glow: rgba(16, 185, 129, 0.25);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border: #334155;
+      --border-accent: #059669;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: var(--accent-glow);
+      color: var(--accent);
+      border: 1px solid var(--border-accent);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p.subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Metric Summary Bar */
+    .metrics-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .metric-chip {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .metric-chip.featured {
+      border-color: var(--accent);
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.08) 0%, rgba(15, 23, 42, 0.6) 100%);
+    }
+
+    .metric-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .metric-value {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0.25rem 0;
+    }
+
+    .metric-chip.featured .metric-value {
+      color: var(--accent);
+    }
+
+    .metric-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(540px, 1fr));
+      gap: 2rem;
+    }
+
+    @media (max-width: 640px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+    }
+
+    .card.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .card-image-wrap {
+      background: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      min-height: 280px;
+      cursor: pointer;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .card-image-wrap img {
+      max-width: 100%;
+      max-height: 380px;
+      object-fit: contain;
+      border-radius: 6px;
+      transition: transform 0.2s ease;
+    }
+
+    .card-image-wrap:hover img {
+      transform: scale(1.02);
+    }
+
+    .card-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+    }
+
+    .figure-tag {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .format-pills {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .pill {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-caption {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 0.75rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0b0f19;
+    }
+
+    .btn-primary:hover {
+      background: #34d399;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #cbd5e1;
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: #94a3b8;
+      color: #fff;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="badge">IEEE Publication Visual Assets</div>
+      <h1>Corel-1K CBIR Visual Gallery</h1>
+      <p class="subtitle">Comprehensive showcase of system diagrams, multi-metric quantitative bar charts, weight distributions, and qualitative search grids.</p>
+    </header>
+
+    <!-- Metrics Summary -->
+    <div class="metrics-bar">
+      <div class="metric-chip">
+        <div class="metric-label">M1 (Colour Only)</div>
+        <div class="metric-value">0.4048</div>
+        <div class="metric-desc">mAP (Full Gallery)</div>
+      </div>
+      <div class="metric-chip">
+        <div class="metric-label">M2 (Texture Only)</div>
+        <div class="metric-value">0.3508</div>
+        <div class="metric-desc">mAP (Full Gallery)</div>
+      </div>
+      <div class="metric-chip">
+        <div class="metric-label">M3 (Equal Fusion)</div>
+        <div class="metric-value">0.4652</div>
+        <div class="metric-desc">mAP (Full Gallery)</div>
+      </div>
+      <div class="metric-chip">
+        <div class="metric-label">M4 (Fixed Fusion)</div>
+        <div class="metric-value">0.4340</div>
+        <div class="metric-desc">mAP (Full Gallery)</div>
+      </div>
+      <div class="metric-chip featured">
+        <div class="metric-label">M5 (AI Adaptive)</div>
+        <div class="metric-value">0.4845</div>
+        <div class="metric-desc">Precision@10: 0.7200 (Peak)</div>
+      </div>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid">
+
+      <!-- Fig 1: Pipeline Diagram -->
+      <div class="card full-width">
+        <div class="card-image-wrap">
+          <img src="figures/fig1_pipeline_diagram.png" alt="Fig 1: Pipeline Architecture Diagram">
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="figure-tag">Figure 1 &bull; Methodology</span>
+            <div class="format-pills">
+              <span class="pill">300 DPI</span>
+              <span class="pill">Vector SVG</span>
+            </div>
+          </div>
+          <div class="card-title">Proposed CBIR Pipeline Architecture Diagram</div>
+          <div class="card-caption">
+            Block diagram illustrating feature extraction (HSV 9-dim + GLCM 4-dim), 13-dim query concatenation, metric-trained MLP weight inference (w_colour, w_texture), and adaptive distance ranking against the 900-image gallery.
+          </div>
+          <div class="card-actions">
+            <a href="figures/fig1_pipeline_diagram.png" target="_blank" class="btn btn-primary">Open High-Res PNG</a>
+            <a href="figures/fig1_pipeline_diagram.svg" target="_blank" class="btn btn-outline">Open Vector SVG</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fig 2: Grouped Bar Chart -->
+      <div class="card">
+        <div class="card-image-wrap">
+          <img src="figures/cbir_model_comparison_grouped_bar.png" alt="Fig 2: Grouped Bar Chart">
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="figure-tag">Figure 2 &bull; Results</span>
+            <div class="format-pills">
+              <span class="pill">IEEE 3.5" Single Col</span>
+              <span class="pill">300 DPI</span>
+              <span class="pill">SVG</span>
+            </div>
+          </div>
+          <div class="card-title">Grouped Bar Chart (Precision, Recall, F1, mAP)</div>
+          <div class="card-caption">
+            Publication-grade comparison of models M1–M5 across 4 performance metrics, highlighting proposed model M5 in patterned emerald green.
+          </div>
+          <div class="card-actions">
+            <a href="figures/cbir_model_comparison_grouped_bar.png" target="_blank" class="btn btn-primary">Open 300 DPI PNG</a>
+            <a href="figures/cbir_model_comparison_grouped_bar.svg" target="_blank" class="btn btn-outline">Open Vector SVG</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fig 2 Alt: Annotated Grouped Bar -->
+      <div class="card">
+        <div class="card-image-wrap">
+          <img src="figures/cbir_model_comparison_annotated.png" alt="Fig 2 Alt: Annotated Grouped Bar Chart">
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="figure-tag">Figure 2 (Alt) &bull; Presentation</span>
+            <div class="format-pills">
+              <span class="pill">Annotated</span>
+              <span class="pill">300 DPI</span>
+              <span class="pill">SVG</span>
+            </div>
+          </div>
+          <div class="card-title">Annotated Grouped Bar Chart</div>
+          <div class="card-caption">
+            Includes direct numerical value annotations on proposed Model M5 bars (Precision: 0.7200, Recall: 0.0800, F1: 0.1440, mAP: 0.4845).
+          </div>
+          <div class="card-actions">
+            <a href="figures/cbir_model_comparison_annotated.png" target="_blank" class="btn btn-primary">Open 300 DPI PNG</a>
+            <a href="figures/cbir_model_comparison_annotated.svg" target="_blank" class="btn btn-outline">Open Vector SVG</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fig 3: Weight Distributions -->
+      <div class="card">
+        <div class="card-image-wrap">
+          <img src="figures/fig3_weight_distributions.png" alt="Fig 3: Weight Distributions">
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="figure-tag">Figure 3 &bull; Discussion</span>
+            <div class="format-pills">
+              <span class="pill">KDE Distribution</span>
+              <span class="pill">300 DPI</span>
+            </div>
+          </div>
+          <div class="card-title">MLP-Predicted Adaptive Weight Distributions</div>
+          <div class="card-caption">
+            Double histogram with Kernel Density Estimation (KDE) depicting the learned dynamic range of colour and texture weights across all 100 query images.
+          </div>
+          <div class="card-actions">
+            <a href="figures/fig3_weight_distributions.png" target="_blank" class="btn btn-primary">Open 300 DPI PNG</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fig 4: Category Weights -->
+      <div class="card">
+        <div class="card-image-wrap">
+          <img src="figures/fig4_category_weights.png" alt="Fig 4: Category Weights">
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="figure-tag">Figure 4 &bull; Ablation</span>
+            <div class="format-pills">
+              <span class="pill">Stacked Bar</span>
+              <span class="pill">300 DPI</span>
+            </div>
+          </div>
+          <div class="card-title">Category-Wise Average Learned Weights</div>
+          <div class="card-caption">
+            Stacked proportion chart illustrating how the MLP dynamically adapts to texture-heavy classes (flowers: 87.2% texture) and colour-heavy classes (mountains: 61.6% colour).
+          </div>
+          <div class="card-actions">
+            <a href="figures/fig4_category_weights.png" target="_blank" class="btn btn-primary">Open 300 DPI PNG</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fig 5: Qualitative Retrieval Grid -->
+      <div class="card full-width">
+        <div class="card-image-wrap">
+          <img src="figures/fig5_query_m3_vs_m5_beaches.png" alt="Fig 5: Qualitative Search Grid">
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="figure-tag">Figure 5 &bull; Qualitative Analysis</span>
+            <div class="format-pills">
+              <span class="pill">Top-10 Grid</span>
+              <span class="pill">300 DPI</span>
+            </div>
+          </div>
+          <div class="card-title">M3 vs. M5 Qualitative Search Grid (Beaches Query)</div>
+          <div class="card-caption">
+            Side-by-side Top-10 retrieval ranking for sample Beaches query comparing Equal Fusion (M3) and AI Adaptive model (M5). Green borders indicate relevant matches; red indicates false positives.
+          </div>
+          <div class="card-actions">
+            <a href="figures/fig5_query_m3_vs_m5_beaches.png" target="_blank" class="btn btn-primary">Open High-Res PNG</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer>
+      Corel-1K CBIR Research Implementation &bull; All assets generated at 300 DPI / Lossless Vector formats.
+    </footer>
+  </div>
+
+</body>
+</html>
