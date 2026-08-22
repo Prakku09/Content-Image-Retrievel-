@@ -72,7 +72,7 @@ Fuses normalised colour and texture features using equal weight coefficients:
 Fuses colour and texture using a predetermined fixed baseline weight scheme:
 - Colour Weight $w_C = 0.7$
 - Texture Weight $w_T = 0.3$
-- Equivalent distance ranking formula: $D_{M4} = \sqrt{0.49 D_c^2 + 0.09 D_t^2}$ (which is ranking-equivalent to distance weights $w'_C \approx 0.8448$ and $w'_T \approx 0.1552$, since feature weights are squared under Euclidean distance).
+- Equivalent distance ranking formula: $D_{M4} = \sqrt{0.49 D_c^2 + 0.09 D_t^2}$
 
 ### M5 — Proposed AI-Based Adaptive Weighting
 M5 learns the relative contribution of colour and texture dynamically for each query.
@@ -81,7 +81,6 @@ M5 learns the relative contribution of colour and texture dynamically for each q
 - **Weight Normalization**: Softmax is applied to ensure weights are non-negative and sum to exactly 1.0 ($w_{colour}(q) + w_{texture}(q) = 1$).
 - **Retrieval Distance**: 
   $$D_{M5}(q, x) = \sqrt{w_{colour}(q) \cdot D_{colour}(q,x)^2 + w_{texture}(q) \cdot D_{texture}(q,x)^2}$$
-  where $D_{colour}(q,x)$ and $D_{texture}(q,x)$ are the ordinary Euclidean distances.
 
 ---
 
@@ -89,31 +88,18 @@ M5 learns the relative contribution of colour and texture dynamically for each q
 
 ### Network Architecture
 - **Layers**: Input (13) -> Linear (16) -> LeakyReLU(0.1) -> Linear (8) -> LeakyReLU(0.1) -> Linear (2) -> Softmax
-- **Parameters**: Exactly 378 trainable parameters (a lightweight network designed to support reproducibility and to prevent overfitting).
+- **Parameters**: Exactly 378 trainable parameters (a lightweight network designed to support reproducibility and prevent overfitting).
 
 ### Training and Validation Protocol
 - **Internal Split**: The 900 gallery images are split into an internal training set (700 images, 70/cat) and validation set (200 images, 20/cat) using random seed 42.
 - **Triplet Margin Loss**: Model is trained using pre-generated triplet configurations (q, p, n), where p is a same-category image and n is a different-category image.
   $$\mathcal{L} = \max(0, D^2_{M5}(q, p) - D^2_{M5}(q, n) + 0.15)$$
 - **Optimization**: Adam optimizer (learning rate = 0.001, batch size = 64).
-- **Early Stopping**: Monitored strictly on the internal validation triplet loss with a patience of 10 epochs.
-
-### Data Leakage Prevention
-The final 100 test queries are completely unseen during MLP training, validation, hyperparameter selection, and early-stopping checks. They are only utilized once for the final evaluation of M5.
+- **Early Stopping**: Monitored strictly on internal validation triplet loss with a patience of 10 epochs.
 
 ---
 
-## 8. Evaluation Metrics
-For every query, retrieval is evaluated against the 900 gallery images. We compute:
-- **Precision@10**: Proportion of relevant images in the Top-10 retrieved.
-- **Recall@10**: Proportion of total relevant gallery images retrieved in the Top-10 (TP / 90).
-- **F1-score@10**: Harmonic mean of Precision@10 and Recall@10.
-- **Mean Average Precision (mAP)**: Computed over the complete 900-image gallery.
-- **Retrieval Time**: Average elapsed execution time per query.
-
----
-
-## 9. Final M1–M5 Results
+## 8. Final M1–M5 Quantitative Results
 
 | Model | Mean Precision@10 | Mean Recall@10 | Mean F1-score@10 | mAP (Full Gallery) | Avg Retrieval Time |
 | :--- | :---: | :---: | :---: | :---: | :---: |
@@ -125,65 +111,77 @@ For every query, retrieval is evaluated against the 900 gallery images. We compu
 
 ---
 
-## 10. Repository Structure
+## 9. Repository Structure
+
 ```text
-├── config.py                 # Global/Part 1 configurations
-├── config_part2.py           # Part 2 metric learning configurations
-├── dataset_loader.py         # Recursive scanning and splitting module
-├── feature_extractor.py      # HSV moments and GLCM descriptor extraction
-├── normalization.py          # Min-Max normalization class
-├── retrieval.py              # Baseline representations and Euclidean ranking
-├── evaluation.py             # Metric calculations (Precision, Recall, F1, mAP)
-├── visualization.py          # Part 1 comparison table and plotting helpers
-├── mlp_model.py              # LeakyReLU MLP neural network module
-├── mlp_trainer.py            # Triplet dataset and internal training loop
-├── visualize_part2.py        # Part 2 plotting (histograms, stacked bar, comparison grids)
-├── run_sanity_check.py       # Part 1 pipeline verification
-├── run_part2_sanity_check.py # M5 logic and shape verification
-├── run_part1_experiment.py   # Baseline experiment script
-├── run_part2_experiment.py   # MLP training and M5 evaluation orchestrator
-├── README.md                 # Project documentation
-└── output/                   # Directory containing reports, pkl files, and plots
+├── config.py                           # Central configuration source of truth
+├── main.py                             # Unified CLI runner (runs full pipeline or stages)
+├── sanity_check.py                     # Unified test suite
+├── README.md                           # Documentation
+├── FINAL_PAPER_FIGURE_AND_TABLE_INVENTORY.md  # Inventory of publication assets
+│
+├── data/
+│   ├── dataset_loader.py               # Corel-1K recursive loader & 100/900 split
+│   └── validate_dataset.py             # Dataset verification tool
+│
+├── features/
+│   ├── feature_extractor.py            # HSV moments (9-dim) and GLCM texture (4-dim)
+│   └── normalization.py                # MinMaxNormalizer fitted on gallery
+│
+├── model/
+│   ├── mlp_model.py                    # PyTorch AdaptiveWeightMLP architecture
+│   └── mlp_trainer.py                  # Metric learning (triplet loss) trainer
+│
+├── retrieval/
+│   ├── retrieval.py                    # Concatenation and Euclidean distance ranking
+│   └── evaluation.py                   # Precision@K, Recall@K, F1@K, mAP metrics
+│
+├── visualization/
+│   ├── visualization.py                # Retrieval grid and baseline plotting
+│   ├── visualize_part2.py              # M1-M5 comparisons, weight distributions
+│   └── generate_grouped_bar_chart.py   # Publication-grade grouped bar chart generator
+│
+├── figures/                            # High-resolution (300 DPI) & vector paper assets
+│   ├── fig1_pipeline_diagram.svg       # Framework Block Diagram (Vector)
+│   ├── fig1_pipeline_diagram.png       # Framework Block Diagram (300 DPI)
+│   ├── cbir_model_comparison_grouped_bar.png # Grouped Bar Chart (300 DPI)
+│   ├── cbir_model_comparison_grouped_bar.svg # Grouped Bar Chart (Vector)
+│   ├── cbir_model_comparison_annotated.png   # Annotated Grouped Bar Chart (300 DPI)
+│   ├── cbir_model_comparison_annotated.svg   # Annotated Grouped Bar Chart (Vector)
+│   ├── fig2_model_performance_comparison.png # mAP Comparison (300 DPI)
+│   ├── fig3_weight_distributions.png   # Learned Weight Distributions KDE (300 DPI)
+│   ├── fig4_category_weights.png       # Category-Wise Mean Weights (300 DPI)
+│   └── fig5_query_m3_vs_m5_beaches.png # M3 vs M5 Qualitative Search Grid (300 DPI)
+│
+└── output/                             # Generated feature caches & checkpoints
+    ├── corel1k_features.pkl
+    └── part2/
+        ├── adaptive_weight_mlp.pt
+        └── part2_results.pkl
 ```
 
 ---
 
-## 11. Execution Instructions
+## 10. Execution Instructions
 
-### Dataset Configuration
-Set the dataset folder path inside your environment variables or modify `DEFAULT_DATASET_PATH` in `config.py` to point to your Corel-1K directory:
-```python
-DEFAULT_DATASET_PATH = r"C:\path\to\your\dataset"
+### Run the Full Pipeline End-to-End
+```bash
+python main.py
 ```
 
-The resolved folder is retrieved dynamically via `DATASET_PATH` which parses the `COREL_DATASET_PATH` environment variable, falling back to `DEFAULT_DATASET_PATH`:
-```python
-DATASET_PATH = Path(os.getenv("COREL_DATASET_PATH", DEFAULT_DATASET_PATH)).resolve()
+### Run Specific Stages
+```bash
+# Run sanity checks
+python main.py --stage sanity
+# or directly:
+python sanity_check.py
+
+# Run only baseline models (M1-M4)
+python main.py --stage part1
+
+# Run only MLP training & M5 evaluation
+python main.py --stage part2
+
+# Regenerate publication figures into figures/
+python main.py --stage figures
 ```
-
-### Execution Steps
-1. **Sanity Verification (Part 1)**:
-   ```bash
-   python run_sanity_check.py
-   ```
-2. **Execute baseline experiments (Part 1)**:
-   ```bash
-   python run_part1_experiment.py
-   ```
-3. **Verify M5 MLP model logic (Part 2)**:
-   ```bash
-   python run_part2_sanity_check.py
-   ```
-4. **Execute MLP training and M5 evaluation (Part 2)**:
-   ```bash
-   python run_part2_experiment.py
-   ```
-
----
-
-## 12. Reproducibility Information
-To support reproducibility:
-- Random seeds are fixed to 42 across all operations.
-- Extracted features, normalization min/max values, and query/gallery split lists are saved in [output/corel1k_features.pkl](file:///c:/Users/777Pr/Downloads/Research%20implementation/output/corel1k_features.pkl).
-- Internal training/validation split indices are saved in [output/part2/part2_results.pkl](file:///c:/Users/777Pr/Downloads/Research%20implementation/output/part2/part2_results.pkl).
-- Model parameters are serialized to [output/part2/adaptive_weight_mlp.pt](file:///c:/Users/777Pr/Downloads/Research%20implementation/output/part2/adaptive_weight_mlp.pt).

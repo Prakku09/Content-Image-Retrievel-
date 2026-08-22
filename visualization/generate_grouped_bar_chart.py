@@ -155,9 +155,13 @@ def create_ieee_chart():
     )
     legend.get_frame().set_linewidth(0.6)
 
+    # Ensure figures directory exists
+    fig_dir = Path("figures")
+    fig_dir.mkdir(parents=True, exist_ok=True)
+
     # Save Variant 1
-    png_path = Path("cbir_model_comparison_grouped_bar.png")
-    svg_path = Path("cbir_model_comparison_grouped_bar.svg")
+    png_path = fig_dir / "cbir_model_comparison_grouped_bar.png"
+    svg_path = fig_dir / "cbir_model_comparison_grouped_bar.svg"
     fig.savefig(png_path, dpi=300, bbox_inches='tight', pad_inches=0.03)
     fig.savefig(svg_path, format='svg', bbox_inches='tight', pad_inches=0.03)
     plt.close(fig)
@@ -223,8 +227,8 @@ def create_ieee_chart():
     )
     legend2.get_frame().set_linewidth(0.6)
 
-    annotated_png = Path("cbir_model_comparison_annotated.png")
-    annotated_svg = Path("cbir_model_comparison_annotated.svg")
+    annotated_png = fig_dir / "cbir_model_comparison_annotated.png"
+    annotated_svg = fig_dir / "cbir_model_comparison_annotated.svg"
     fig2.savefig(annotated_png, dpi=300, bbox_inches='tight', pad_inches=0.03)
     fig2.savefig(annotated_svg, format='svg', bbox_inches='tight', pad_inches=0.03)
     plt.close(fig2)

@@ -1,156 +1,79 @@
 # Final IEEE Paper Figure and Table Inventory
 
-This document provides a comprehensive inventory of all visual and tabular assets available for the final IEEE research paper on the Corel-1K CBIR project. All metrics and references correspond strictly to the outputs in the repository.
+This document provides a comprehensive inventory of all visual and tabular assets available for the final IEEE research paper on the Corel-1K CBIR project. All assets are located in the [`figures/`](file:///c:/Users/777Pr/Downloads/Research%20implementation/figures/) folder.
 
 ---
 
-## 1. Recommended Figures for Main IEEE Paper
+## 1. Primary Figures for Main IEEE Paper
 
-A set of five figures is recommended to support the methodology, quantitative evaluation, ablation analysis, and qualitative retrieval results.
+A set of publication-ready figures is available to support the methodology, quantitative evaluation, ablation analysis, and qualitative retrieval results.
 
 * **Figure 1: Framework Block Diagram**
-  * *Status*: **NOT AVAILABLE** — must be designed separately.
-  * *Purpose*: Explains the system architecture: feature extraction (HSV + GLCM), query feature vector preparation (13-dim), feed-forward MLP inference, softmax-based weight calculation, and adaptive distance calculation.
-* **Figure 2: Model Performance Comparison (mAP)**
-  * *Source*: [map_comparison.png](file:///c:/Users/777Pr/Downloads/Research%20implementation/output/part2/plots/map_comparison.png)
-  * *Purpose*: The primary accuracy metric (mAP) evaluated across all five models (M1–M5), showing that Model M5 achieves a peak performance of **0.4845**.
+  * *Source*: [`figures/fig1_pipeline_diagram.png`](file:///c:/Users/777Pr/Downloads/Research%20implementation/figures/fig1_pipeline_diagram.png) (300 DPI) & [`figures/fig1_pipeline_diagram.svg`](file:///c:/Users/777Pr/Downloads/Research%20implementation/figures/fig1_pipeline_diagram.svg) (Lossless Vector)
+  * *Purpose*: Explains the end-to-end system architecture: feature extraction (HSV + GLCM), query feature vector preparation (13-dim), feed-forward MLP inference, softmax-based weight calculation, and adaptive distance calculation.
+  * *Status*: **READY** (300 DPI PNG & Scalable SVG).
+
+* **Figure 2: Model Performance Comparison (Grouped Bar Chart)**
+  * *Source*: [`figures/cbir_model_comparison_grouped_bar.png`](file:///c:/Users/777Pr/Downloads/Research%20implementation/figures/cbir_model_comparison_grouped_bar.png) (300 DPI) & [`figures/cbir_model_comparison_grouped_bar.svg`](file:///c:/Users/777Pr/Downloads/Research%20implementation/figures/cbir_model_comparison_grouped_bar.svg) (Lossless Vector)
+  * *Purpose*: Multi-metric evaluation (Precision@10, Recall@10, F1-score@10, mAP) across all five models (M1–M5), highlighting proposed model M5 in patterned emerald green.
+  * *Status*: **READY** (Single-column IEEE 3.5 in, Times New Roman typography, 300 DPI).
+
 * **Figure 3: MLP-Predicted Weight Distributions**
-  * *Source*: [weight_distributions.png](file:///c:/Users/777Pr/Downloads/Research%20implementation/output/part2/plots/weight_distributions.png)
+  * *Source*: [`figures/fig3_weight_distributions.png`](file:///c:/Users/777Pr/Downloads/Research%20implementation/figures/fig3_weight_distributions.png)
   * *Purpose*: Demonstrates the dynamic range and density of weights ($w_{\text{colour}}$ and $w_{\text{texture}}$) across the query set.
+  * *Status*: **READY** (300 DPI, Seaborn KDE plot).
+
 * **Figure 4: Category-Wise Mean Weights**
-  * *Source*: [category_weights.png](file:///c:/Users/777Pr/Downloads/Research%20implementation/output/part2/plots/category_weights.png)
-  * *Purpose*: Shows the average weight assignments per category, highlighting that the model automatically adapts to texture-centric (e.g., flowers) and colour-centric (e.g., mountains) queries.
+  * *Source*: [`figures/fig4_category_weights.png`](file:///c:/Users/777Pr/Downloads/Research%20implementation/figures/fig4_category_weights.png)
+  * *Purpose*: Shows average weight assignments per category, highlighting that the model automatically adapts to texture-centric (e.g., flowers) and colour-centric (e.g., mountains) queries.
+  * *Status*: **READY** (300 DPI, rotated labels).
+
 * **Figure 5: M3 vs. M5 Qualitative Search Grid**
-  * *Source*: [query_m3_vs_m5_beaches.png](file:///c:/Users/777Pr/Downloads/Research%20implementation/output/part2/plots/query_m3_vs_m5_beaches.png)
+  * *Source*: [`figures/fig5_query_m3_vs_m5_beaches.png`](file:///c:/Users/777Pr/Downloads/Research%20implementation/figures/fig5_query_m3_vs_m5_beaches.png)
   * *Purpose*: Compares Equal Fusion (M3) and Adaptive Fusion (M5) side-by-side on a sample query, demonstrating how M5 corrects baseline retrieval errors.
+  * *Status*: **READY** (Includes relevance borders and weight tags).
 
 ---
 
-## 2. Optional / Supplementary Figures
+## 2. Supplementary Figures
 
-This table lists additional plots and retrieval grids generated by the scripts, mapping each to its recommended role in the paper.
-
-| Figure / Plot | Source Relative Path | Category | Role Recommendation |
+| Figure / Plot | File Path | Format | Role Recommendation |
 | :--- | :--- | :---: | :--- |
-| **Precision@10 Bar Chart** | `output/part2/plots/precision_comparison.png` | Plot | **SUPPLEMENTARY MATERIAL** |
-| **Recall@10 Bar Chart** | `output/part2/plots/recall_comparison.png` | Plot | **SUPPLEMENTARY MATERIAL** |
-| **F1-score@10 Bar Chart** | `output/part2/plots/f1_comparison.png` | Plot | **SUPPLEMENTARY MATERIAL** |
-| **Average Query Latency** | `output/part2/plots/time_comparison.png` | Plot | **SUPPLEMENTARY MATERIAL** (or main text Section V) |
-| **M5 Dinosaurs Search Grid** | `output/part2/plots/query_m5_dinosaurs.png` | Grid | **SUPPLEMENTARY MATERIAL** |
-| **M5 Flowers Search Grid** | `output/part2/plots/query_m5_flowers.png` | Grid | **SUPPLEMENTARY MATERIAL** |
-| **M3 vs. M5 Dinosaurs Grid** | `output/part2/plots/query_m3_vs_m5_dinosaurs.png` | Grid | **SUPPLEMENTARY MATERIAL** |
-| **M3 vs. M5 Flowers Grid** | `output/part2/plots/query_m3_vs_m5_flowers.png` | Grid | **SUPPLEMENTARY MATERIAL** |
-| **MLP Triplet Loss Curves** | *N/A (Loss history data is in results.pkl)* | Plot | **SUPPLEMENTARY MATERIAL** (must plot from metrics) |
-| **Part 1-only Plots** | `output/plots/*` | Plots | **NOT NEEDED** (superseded by Part 2 M1–M5 figures) |
+| **Annotated Grouped Bar Chart** | [`figures/cbir_model_comparison_annotated.png`](file:///c:/Users/777Pr/Downloads/Research%20implementation/figures/cbir_model_comparison_annotated.png) | PNG (300 DPI) & SVG | **SUPPLEMENTARY MATERIAL** (includes M5 peak text callouts) |
+| **mAP-Only Bar Chart** | [`figures/fig2_model_performance_comparison.png`](file:///c:/Users/777Pr/Downloads/Research%20implementation/figures/fig2_model_performance_comparison.png) | PNG (300 DPI) | **SUPPLEMENTARY MATERIAL** |
 
 ---
 
-## 3. Exact File Paths and Status
-
-This section provides the exact file paths and properties for the recommended figures.
-
-### Figure 1
-* **Filename**: `N/A`
-* **Relative Path**: `N/A`
-* **File Type**: `N/A`
-* **Content**: Block diagram of proposed framework.
-* **Status**: **NOT AVAILABLE** (requires manual design).
-
-### Figure 2
-* **Filename**: `map_comparison.png`
-* **Relative Path**: [output/part2/plots/map_comparison.png](file:///c:/Users/777Pr/Downloads/Research%20implementation/output/part2/plots/map_comparison.png)
-* **File Type**: `PNG image`
-* **Content**: Mean Average Precision comparison for M1–M5.
-* **Status**: **READY** (300 DPI, styled with Seaborn).
-
-### Figure 3
-* **Filename**: `weight_distributions.png`
-* **Relative Path**: [output/part2/plots/weight_distributions.png](file:///c:/Users/777Pr/Downloads/Research%20implementation/output/part2/plots/weight_distributions.png)
-* **File Type**: `PNG image`
-* **Content**: Double histogram detailing colour/texture weight ranges.
-* **Status**: **READY** (300 DPI, Seaborn KDE plot).
-
-### Figure 4
-* **Filename**: `category_weights.png`
-* **Relative Path**: [output/part2/plots/category_weights.png](file:///c:/Users/777Pr/Downloads/Research%20implementation/output/part2/plots/category_weights.png)
-* **File Type**: `PNG image`
-* **Content**: Stacked bar chart showing mean category weights.
-* **Status**: **READY** (300 DPI, rotated labels).
-
-### Figure 5
-* **Filename**: `query_m3_vs_m5_beaches.png`
-* **Relative Path**: [output/part2/plots/query_m3_vs_m5_beaches.png](file:///c:/Users/777Pr/Downloads/Research%20implementation/output/part2/plots/query_m3_vs_m5_beaches.png)
-* **File Type**: `PNG image`
-* **Content**: Staged grid showing M3 vs. M5 search outputs.
-* **Status**: **READY** (includes relevance borders and weight tags).
-
----
-
-## 4. IEEE Captions
+## 3. IEEE Captions
 
 Below are the formatted captions matching the IEEE style manual:
 
 * **Fig. 1.** Block diagram of the proposed query-adaptive colour-texture fusion CBIR framework.
-* **Fig. 2.** Comparison of mean Average Precision (mAP) across models M1–M5 on the Corel-1K evaluation set.
+* **Fig. 2.** Quantitative retrieval performance comparison across the five CBIR models (M1–M5) evaluated on the Corel-1K benchmark across Precision@10, Recall@10, F1-score@10, and mean Average Precision (mAP). Model M5 (patterned green) represents the proposed adaptive weighting method.
 * **Fig. 3.** Probability density distributions of the predicted colour and texture weights ($w_{\text{colour}}$ and $w_{\text{texture}}$) across all evaluation queries.
 * **Fig. 4.** Average stacked colour and texture weights across the ten semantic categories of the Corel-1K dataset.
 * **Fig. 5.** Top-10 retrieved gallery images for a sample 'beaches' query comparing equal weight fusion (M3) and the proposed adaptive weight model (M5). Relevance borders highlight correct (green) and incorrect (red) matches.
 
 ---
 
-## 5. Table Inventory
-
-The following tables are recommended for inclusion in the manuscript:
+## 4. Table Inventory
 
 ### Table I: Dataset and Experimental Configuration
 * **Description**: Outlines the dataset partition and baseline variables (split, seed, query size, etc.).
-* **Source**: [config.py](file:///c:/Users/777Pr/Downloads/Research%20implementation/config.py)
-* **Status**: **TO BE CREATED MANUALLY** (LaTeX / Word).
+* **Source**: [`config.py`](file:///c:/Users/777Pr/Downloads/Research%20implementation/config.py)
 
 ### Table II: Feature Descriptors
-* **Description**: Lists dimensions and parameters for HSV moments and GLCM texture features.
-* **Source**: [feature_extractor.py](file:///c:/Users/777Pr/Downloads/Research%20implementation/feature_extractor.py)
-* **Status**: **TO BE CREATED MANUALLY** (LaTeX / Word).
+* **Description**: Lists dimensions and parameters for HSV moments (9-dim) and GLCM texture features (4-dim).
+* **Source**: [`features/feature_extractor.py`](file:///c:/Users/777Pr/Downloads/Research%20implementation/features/feature_extractor.py)
 
 ### Table III: M1–M5 Retrieval Performance Comparison
 * **Description**: Complete accuracy metrics (Precision@10, Recall@10, F1-score@10, mAP) and retrieval latency.
-* **Source**: [part2_experiment_report.md](file:///c:/Users/777Pr/Downloads/Research%20implementation/output/part2/part2_experiment_report.md#L35-L42) (CBIR Comparison Results)
-* **Status**: **READY** (can be copied directly).
+* **Source**: [`main.py`](file:///c:/Users/777Pr/Downloads/Research%20implementation/main.py) / [`output/part2/part2_results.pkl`](file:///c:/Users/777Pr/Downloads/Research%20implementation/output/part2/part2_results.pkl)
 
-### Table IV: M5 Weight Statistics
-* **Description**: Distribution metrics (Mean, SD, Min, Max) of predicted weights.
-* **Source**: [part2_experiment_report.md](file:///c:/Users/777Pr/Downloads/Research%20implementation/output/part2/part2_experiment_report.md#L15-L17) (Weight Analysis)
-* **Status**: **READY** (can be copied directly).
-
-### Table V: Category-Wise Average Learned Weights
-* **Description**: Mean weights assigned per semantic category.
-* **Source**: [part2_experiment_report.md](file:///c:/Users/777Pr/Downloads/Research%20implementation/output/part2/part2_experiment_report.md#L20-L31) (Category table)
-* **Status**: **READY** (can be copied directly).
-
----
-
-## 6. Recommended Final Figure Order
-
-The figures should follow the logical progression of the manuscript:
-
-1. **Fig. 1 (Framework)**: Placement in *Section III: Proposed Methodology* to explain the query weight inference structure.
-2. **Fig. 2 (mAP Comparison)**: Placement in *Section IV: Experimental Results* to establish the quantitative performance improvement.
-3. **Fig. 3 (Weight Distribution)**: Placement in *Section V: Discussion & Ablation Study* to show the statistical spread of the adaptive weights.
-4. **Fig. 4 (Category Weights)**: Placement in *Section V: Discussion & Ablation Study* to demonstrate how weights correlate with semantic categories.
-5. **Fig. 5 (Retrieval Comparison)**: Placement in *Section VI: Qualitative Analysis* to provide a visual validation of the retrieval process.
-
----
-
-## 7. Final Paper Asset Checklist
-
-* [ ] **Figure 1 available**: No (must create manually).
-* [x] **Figure 2 available**: Yes ([map_comparison.png](file:///c:/Users/777Pr/Downloads/Research%20implementation/output/part2/plots/map_comparison.png)).
-* [x] **Figure 3 available**: Yes ([weight_distributions.png](file:///c:/Users/777Pr/Downloads/Research%20implementation/output/part2/plots/weight_distributions.png)).
-* [x] **Figure 4 available**: Yes ([category_weights.png](file:///c:/Users/777Pr/Downloads/Research%20implementation/output/part2/plots/category_weights.png)).
-* [x] **Figure 5 available**: Yes ([query_m3_vs_m5_beaches.png](file:///c:/Users/777Pr/Downloads/Research%20implementation/output/part2/plots/query_m3_vs_m5_beaches.png)).
-* [x] **Tables verified**: Yes (verified against results data).
-* [x] **Captions prepared**: Yes (drafted in IEEE style).
-* [x] **All numerical values match implementation**: Yes (verified against `part2_results.pkl`).
-* [x] **No fabricated figures**: Yes.
-* [x] **No duplicated figures**: Yes.
-* [x] **All figures suitable for IEEE paper**: Yes (300 DPI, styled correctly).
+| Model | Descriptor / Strategy | Precision@10 | Recall@10 | F1-score@10 | mAP |
+| :--- | :--- | :---: | :---: | :---: | :---: |
+| **M1** | HSV Color Moments (9-dim) | 0.6200 | 0.0689 | 0.1240 | 0.4048 |
+| **M2** | GLCM Texture (4-dim) | 0.4680 | 0.0520 | 0.0936 | 0.3508 |
+| **M3** | Equal Fusion ($w_c=0.5, w_t=0.5$) | 0.6990 | 0.0777 | 0.1398 | 0.4652 |
+| **M4** | Fixed Fusion ($w_c=0.7, w_t=0.3$) | 0.6730 | 0.0748 | 0.1346 | 0.4340 |
+| **M5** | **Proposed AI Adaptive Weighting** | **0.7200** | **0.0800** | **0.1440** | **0.4845** |
