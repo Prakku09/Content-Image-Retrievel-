@@ -1,0 +1,402 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1160" width="800" height="1160">
+  <defs>
+    <!-- Crisp Academic Shadows -->
+    <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="114%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.05"/>
+    </filter>
+    <filter id="accent-shadow" x="-5%" y="-5%" width="110%" height="114%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#1E40AF" flood-opacity="0.09"/>
+    </filter>
+
+    <!-- Arrow Markers -->
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1.5 2 L 8 5 L 1.5 8 z" fill="#334155" />
+    </marker>
+    <marker id="arrowhead-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 1.5 2 L 8 5 L 1.5 8 z" fill="#1D4ED8" />
+    </marker>
+
+    <!-- Soft Academic Gradients -->
+    <linearGradient id="grad-white" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#F8FAFC" />
+    </linearGradient>
+    <linearGradient id="grad-hsv" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#F0F9FF" />
+    </linearGradient>
+    <linearGradient id="grad-glcm" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#EEF2FF" />
+    </linearGradient>
+    <linearGradient id="grad-mlp" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#EFF6FF" />
+    </linearGradient>
+    <linearGradient id="grad-output" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#F0FDF4" />
+    </linearGradient>
+  </defs>
+
+  <style>
+    .diagram-bg { fill: #FFFFFF; }
+    .box { rx: 7; ry: 7; filter: url(#card-shadow); stroke-width: 1.25; }
+    .box-accent { rx: 7; ry: 7; filter: url(#accent-shadow); stroke-width: 1.75; }
+    .inner-box { rx: 5; ry: 5; }
+    .badge { rx: 4; ry: 4; }
+    
+    /* Typography */
+    .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 13.5px; font-weight: 700; fill: #0F172A; }
+    .subtitle { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 11.5px; font-weight: 500; fill: #475569; }
+    .math-text { font-family: "Cambria Math", "Times New Roman", STIXGeneral, serif; font-size: 12px; fill: #1E293B; }
+    .badge-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 10px; font-weight: 700; }
+    .caption { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 13px; fill: #0F172A; }
+    .caption-bold { font-weight: 700; }
+    
+    /* Connectors */
+    .arrow-line { stroke: #334155; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .arrow-line-blue { stroke: #1D4ED8; stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+
+  <!-- Clean Canvas Background -->
+  <rect width="800" height="1160" class="diagram-bg" />
+
+  <!-- ==========================================
+       STAGE 1: Query & Database Images
+       ========================================== -->
+  <g id="stage-1" transform="translate(0, 24)">
+    <!-- Query Image Box -->
+    <g transform="translate(130, 0)">
+      <rect width="255" height="58" class="box" fill="url(#grad-white)" stroke="#94A3B8" />
+      <rect x="12" y="9" width="22" height="18" class="badge" fill="#E2E8F0" />
+      <text x="23" y="22" class="badge-text" fill="#334155" text-anchor="middle">1A</text>
+      
+      <circle cx="48" cy="18" r="6" fill="#93C5FD" />
+      <text x="60" y="22" class="title">Query Image (<tspan font-style="italic">I</tspan><tspan font-size="10" dy="2">q</tspan><tspan dy="-2">)</tspan></text>
+      <text x="14" y="44" class="subtitle">User-provided input search query</text>
+    </g>
+
+    <!-- Gallery Database Box -->
+    <g transform="translate(415, 0)">
+      <rect width="255" height="58" class="box" fill="url(#grad-white)" stroke="#94A3B8" />
+      <rect x="12" y="9" width="22" height="18" class="badge" fill="#E2E8F0" />
+      <text x="23" y="22" class="badge-text" fill="#334155" text-anchor="middle">1B</text>
+      
+      <rect x="42" y="12" width="12" height="12" rx="2" fill="#CBD5E1" stroke="#64748B" stroke-width="1"/>
+      <text x="60" y="22" class="title">Gallery Images (<tspan font-style="italic">I</tspan><tspan font-size="10" dy="2">g</tspan><tspan dy="-2">, </tspan><tspan font-style="italic">g</tspan> = 1...<tspan font-style="italic">N</tspan>)</text>
+      <text x="14" y="44" class="subtitle">Corel-1K database (<tspan font-style="italic">N</tspan> = 1,000 images, 10 classes)</text>
+    </g>
+
+    <!-- Clean Central Merger to Stage 2 -->
+    <path d="M 257.5 58 L 257.5 74 L 400 74" class="arrow-line" />
+    <path d="M 542.5 58 L 542.5 74 L 400 74" class="arrow-line" />
+    <path d="M 400 74 L 400 88" class="arrow-line" marker-end="url(#arrowhead)" />
+  </g>
+
+  <!-- ==========================================
+       STAGE 2: Image Preprocessing
+       ========================================== -->
+  <g id="stage-2" transform="translate(130, 114)">
+    <rect width="540" height="60" class="box" fill="url(#grad-white)" stroke="#64748B" />
+    <rect x="12" y="9" width="20" height="18" class="badge" fill="#E2E8F0" />
+    <text x="22" y="22" class="badge-text" fill="#334155" text-anchor="middle">2</text>
+    
+    <text x="42" y="23" class="title">Image Preprocessing</text>
+    <text x="42" y="44" class="subtitle">Color space standardization • Pixel value normalization to [0, 1] • Grayscale conversion for texture</text>
+  </g>
+
+  <!-- Connector Split: Stage 2 -> 3A & 3B -->
+  <g id="connector-split" transform="translate(0, 174)">
+    <path d="M 400 0 L 400 15 L 257.5 15 L 257.5 28" class="arrow-line" marker-end="url(#arrowhead)" />
+    <path d="M 400 0 L 400 15 L 542.5 15 L 542.5 28" class="arrow-line" marker-end="url(#arrowhead)" />
+    <rect x="335" y="6" width="130" height="18" rx="9" ry="9" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1"/>
+    <text x="400" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="600" fill="#334155" text-anchor="middle">Parallel Feature Extraction</text>
+  </g>
+
+  <!-- ==========================================
+       STAGE 3: Parallel Feature Extraction
+       ========================================== -->
+  <g id="stage-3" transform="translate(0, 204)">
+    <!-- Branch A: HSV Colour Moments -->
+    <g transform="translate(130, 0)">
+      <rect width="255" height="138" class="box" fill="url(#grad-hsv)" stroke="#0284C7" />
+      <rect x="12" y="9" width="22" height="18" class="badge" fill="#E0F2FE" />
+      <text x="23" y="22" class="badge-text" fill="#0369A1" text-anchor="middle">3A</text>
+      
+      <text x="42" y="22" class="title" fill="#0369A1">HSV Colour Feature Extraction</text>
+      <text x="14" y="45" class="subtitle" font-weight="600" fill="#0284C7">Color Moments (9-Dimensional):</text>
+      
+      <text x="20" y="65" class="subtitle">• Mean (μ), Std Dev (σ), Skewness (s)</text>
+      <text x="20" y="83" class="subtitle">• Extracted across H, S, V channels</text>
+      <text x="20" y="101" class="subtitle">• Invariant to lighting &amp; view angle</text>
+      
+      <rect x="10" y="109" width="235" height="21" class="inner-box" fill="#E0F2FE" stroke="#BAE6FD" stroke-width="1"/>
+      <text x="127.5" y="124" class="math-text" fill="#0369A1" text-anchor="middle"><tspan font-weight="bold">f</tspan><tspan font-size="9" dy="2">colour</tspan><tspan dy="-2"> = [μ</tspan><tspan font-size="8" dy="2">H</tspan><tspan dy="-2">, σ</tspan><tspan font-size="8" dy="2">H</tspan><tspan dy="-2">, s</tspan><tspan font-size="8" dy="2">H</tspan><tspan dy="-2">, ..., s</tspan><tspan font-size="8" dy="2">V</tspan><tspan dy="-2">] ∈ ℝ</tspan><tspan font-size="8" dy="-4">9</tspan></text>
+    </g>
+
+    <!-- Branch B: GLCM Texture Descriptors -->
+    <g transform="translate(415, 0)">
+      <rect width="255" height="138" class="box" fill="url(#grad-glcm)" stroke="#6366F1" />
+      <rect x="12" y="9" width="22" height="18" class="badge" fill="#EEF2FF" />
+      <text x="23" y="22" class="badge-text" fill="#4338CA" text-anchor="middle">3B</text>
+      
+      <text x="42" y="22" class="title" fill="#4338CA">GLCM Texture Feature Extraction</text>
+      <text x="14" y="45" class="subtitle" font-weight="600" fill="#4F46E5">Haralick Descriptors (4-Dimensional):</text>
+      
+      <text x="20" y="65" class="subtitle">• Contrast, Correlation, Energy, Homogeneity</text>
+      <text x="20" y="83" class="subtitle">• θ ∈ {0°, 45°, 90°, 135°}, distance d = 1</text>
+      <text x="20" y="101" class="subtitle">• Multi-directional average pooling</text>
+      
+      <rect x="10" y="109" width="235" height="21" class="inner-box" fill="#EEF2FF" stroke="#C7D2FE" stroke-width="1"/>
+      <text x="127.5" y="124" class="math-text" fill="#4338CA" text-anchor="middle"><tspan font-weight="bold">f</tspan><tspan font-size="9" dy="2">texture</tspan><tspan dy="-2"> = [Con, Cor, Ene, Hom] ∈ ℝ</tspan><tspan font-size="8" dy="-4">4</tspan></text>
+    </g>
+  </g>
+
+  <!-- Connector Merge: Stage 3A & 3B -> 4 -->
+  <g id="connector-merge" transform="translate(0, 342)">
+    <path d="M 257.5 0 L 257.5 16 L 400 16" class="arrow-line" />
+    <path d="M 542.5 0 L 542.5 16 L 400 16" class="arrow-line" />
+    <path d="M 400 16 L 400 30" class="arrow-line" marker-end="url(#arrowhead)" />
+  </g>
+
+  <!-- ==========================================
+       STAGE 4: Feature Concatenation
+       ========================================== -->
+  <g id="stage-4" transform="translate(130, 374)">
+    <rect width="540" height="66" class="box" fill="url(#grad-white)" stroke="#475569" />
+    <rect x="12" y="9" width="20" height="18" class="badge" fill="#E2E8F0" />
+    <text x="22" y="22" class="badge-text" fill="#334155" text-anchor="middle">4</text>
+    
+    <text x="42" y="23" class="title">Feature Vector Concatenation</text>
+    <text x="42" y="42" class="subtitle">Unified early-fusion descriptor combining colour &amp; texture attributes</text>
+    
+    <rect x="15" y="45" width="510" height="17" class="inner-box" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+    <text x="270" y="58" class="math-text" fill="#0F172A" text-anchor="middle"><tspan font-weight="bold">f</tspan> = [ <tspan font-weight="bold">f</tspan><tspan font-size="9" dy="2">colour</tspan><tspan dy="-2"> (9-D)  ∥  <tspan font-weight="bold">f</tspan></tspan><tspan font-size="9" dy="2">texture</tspan><tspan dy="-2"> (4-D) ] ∈ ℝ</tspan><tspan font-size="8" dy="-4">13</tspan><tspan dy="4">   (13-dimensional joint representation)</tspan></text>
+
+    <!-- Connector down to Normalization -->
+    <path d="M 270 66 L 270 82" class="arrow-line" marker-end="url(#arrowhead)" />
+  </g>
+
+  <!-- ==========================================
+       STAGE 5: Gallery-Based Min-Max Normalization
+       ========================================== -->
+  <g id="stage-5" transform="translate(130, 458)">
+    <rect width="540" height="70" class="box" fill="url(#grad-white)" stroke="#475569" />
+    <rect x="12" y="9" width="20" height="18" class="badge" fill="#E2E8F0" />
+    <text x="22" y="22" class="badge-text" fill="#334155" text-anchor="middle">5</text>
+    
+    <text x="42" y="23" class="title">Gallery-Based Min-Max Normalization</text>
+    <text x="42" y="42" class="subtitle">Feature re-scaling to [0, 1] per dimension using offline gallery statistics</text>
+    
+    <rect x="15" y="46" width="510" height="19" class="inner-box" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+    <text x="270" y="60" class="math-text" fill="#0F172A" text-anchor="middle"><tspan font-weight="bold">f̂</tspan><tspan font-size="9" dy="2">k</tspan><tspan dy="-2"> = ( f</tspan><tspan font-size="9" dy="2">k</tspan><tspan dy="-2"> - min(G</tspan><tspan font-size="9" dy="2">k</tspan><tspan dy="-2">) ) / ( max(G</tspan><tspan font-size="9" dy="2">k</tspan><tspan dy="-2">) - min(G</tspan><tspan font-size="9" dy="2">k</tspan><tspan dy="-2">) ),    ∀ k ∈ {1, 2, ..., 13}</tspan></text>
+
+    <!-- Connector down to MLP -->
+    <path d="M 270 70 L 270 88" class="arrow-line-blue" marker-end="url(#arrowhead-blue)" />
+  </g>
+
+  <!-- ==========================================
+       STAGE 6: MLP Adaptive Weight Estimation (Core Innovation)
+       ========================================== -->
+  <g id="stage-6" transform="translate(130, 548)">
+    <rect width="540" height="142" class="box-accent" fill="url(#grad-mlp)" stroke="#1D4ED8" />
+    <rect x="12" y="9" width="20" height="18" class="badge" fill="#DBEAFE" />
+    <text x="22" y="22" class="badge-text" fill="#1E40AF" text-anchor="middle">6</text>
+    
+    <text x="42" y="23" class="title" fill="#1E40AF">MLP Adaptive Weight Estimation Network</text>
+    <rect x="438" y="9" width="90" height="18" rx="9" ry="9" fill="#1D4ED8" />
+    <text x="483" y="21" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">PROPOSED</text>
+    
+    <text x="42" y="43" class="subtitle">Query-adaptive weight inference trained offline via Triplet Margin Loss</text>
+    
+    <!-- Mini Neural Architecture Block -->
+    <g transform="translate(15, 51)">
+      <!-- Layer 1: Input -->
+      <g transform="translate(0, 0)">
+        <rect width="95" height="42" rx="4" fill="#FFFFFF" stroke="#93C5FD" stroke-width="1.2"/>
+        <text x="47.5" y="16" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#1E40AF" text-anchor="middle">Input Layer</text>
+        <text x="47.5" y="32" class="math-text" fill="#2563EB" text-anchor="middle">13 Units (<tspan font-weight="bold">f̂</tspan>)</text>
+      </g>
+      <path d="M 95 21 L 118 21" class="arrow-line-blue" marker-end="url(#arrowhead-blue)" />
+
+      <!-- Layer 2: FC1 + LeakyReLU -->
+      <g transform="translate(118, 0)">
+        <rect width="108" height="42" rx="4" fill="#FFFFFF" stroke="#93C5FD" stroke-width="1.2"/>
+        <text x="54" y="16" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#1E40AF" text-anchor="middle">FC1 + LeakyReLU</text>
+        <text x="54" y="32" class="math-text" fill="#2563EB" text-anchor="middle">16 Units (α = 0.1)</text>
+      </g>
+      <path d="M 226 21 L 249 21" class="arrow-line-blue" marker-end="url(#arrowhead-blue)" />
+
+      <!-- Layer 3: FC2 + LeakyReLU -->
+      <g transform="translate(249, 0)">
+        <rect width="108" height="42" rx="4" fill="#FFFFFF" stroke="#93C5FD" stroke-width="1.2"/>
+        <text x="54" y="16" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#1E40AF" text-anchor="middle">FC2 + LeakyReLU</text>
+        <text x="54" y="32" class="math-text" fill="#2563EB" text-anchor="middle">8 Units (α = 0.1)</text>
+      </g>
+      <path d="M 357 21 L 380 21" class="arrow-line-blue" marker-end="url(#arrowhead-blue)" />
+
+      <!-- Layer 4: FC3 + Softmax -->
+      <g transform="translate(380, 0)">
+        <rect width="130" height="42" rx="4" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="1.5"/>
+        <text x="65" y="16" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#1E40AF" text-anchor="middle">FC3 + Softmax</text>
+        <text x="65" y="32" class="math-text" font-weight="bold" fill="#1D4ED8" text-anchor="middle">Weights (<tspan font-style="italic">w</tspan><tspan font-size="9" dy="2">C</tspan><tspan dy="-2">, </tspan><tspan font-style="italic">w</tspan><tspan font-size="9" dy="2">T</tspan><tspan dy="-2">)</tspan></text>
+      </g>
+    </g>
+
+    <!-- Output Formula Banner -->
+    <rect x="15" y="106" width="510" height="24" rx="4" fill="#DBEAFE" stroke="#BFDBFE" stroke-width="1"/>
+    <text x="270" y="122" class="math-text" fill="#1E40AF" text-anchor="middle">Output:   <tspan font-style="italic">w</tspan><tspan font-size="9" dy="2">C</tspan><tspan dy="-2"> = Softmax(z)</tspan><tspan font-size="9" dy="2">1</tspan><tspan dy="-2">,    </tspan><tspan font-style="italic">w</tspan><tspan font-size="9" dy="2">T</tspan><tspan dy="-2"> = Softmax(z)</tspan><tspan font-size="9" dy="2">2</tspan><tspan dy="-2">    such that    </tspan><tspan font-style="italic">w</tspan><tspan font-size="9" dy="2">C</tspan><tspan dy="-2"> + </tspan><tspan font-style="italic">w</tspan><tspan font-size="9" dy="2">T</tspan><tspan dy="-2"> = 1.0,   (</tspan><tspan font-style="italic">w</tspan><tspan font-size="9" dy="2">C</tspan><tspan dy="-2">, </tspan><tspan font-style="italic">w</tspan><tspan font-size="9" dy="2">T</tspan><tspan dy="-2"> ≥ 0)</tspan></text>
+
+    <!-- Connector down to Fusion -->
+    <path d="M 270 142 L 270 160" class="arrow-line-blue" marker-end="url(#arrowhead-blue)" />
+  </g>
+
+  <!-- ==========================================
+       STAGE 7: Weighted Feature Fusion
+       ========================================== -->
+  <g id="stage-7" transform="translate(130, 710)">
+    <rect width="540" height="96" class="box" fill="url(#grad-mlp)" stroke="#2563EB" />
+    <rect x="12" y="9" width="20" height="18" class="badge" fill="#DBEAFE" />
+    <text x="22" y="22" class="badge-text" fill="#1E40AF" text-anchor="middle">7</text>
+    
+    <text x="42" y="23" class="title" fill="#1E3A8A">Weighted Feature Fusion &amp; Distance Metric</text>
+    <text x="42" y="43" class="subtitle">Adaptive query-dependent Euclidean distance between query <tspan font-style="italic">I</tspan><tspan font-size="9" dy="2">q</tspan><tspan dy="-2"> and gallery image </tspan><tspan font-style="italic">I</tspan><tspan font-size="9" dy="2">g</tspan><tspan dy="-2"></tspan></text>
+    
+    <rect x="15" y="50" width="510" height="34" class="inner-box" fill="#FFFFFF" stroke="#93C5FD" stroke-width="1.2"/>
+    <text x="270" y="72" class="math-text" font-size="13" fill="#0F172A" text-anchor="middle"><tspan font-style="italic">D</tspan>(<tspan font-style="italic">I</tspan><tspan font-size="9" dy="2">q</tspan><tspan dy="-2">, </tspan><tspan font-style="italic">I</tspan><tspan font-size="9" dy="2">g</tspan><tspan dy="-2">) = √ [  </tspan><tspan font-style="italic">w</tspan><tspan font-size="9" dy="2">C</tspan><tspan dy="-2"> · ∥</tspan><tspan font-weight="bold">f̂</tspan><tspan font-size="9" dy="2">colour</tspan><tspan font-size="8" dy="-4">(q)</tspan><tspan dy="2"> - </tspan><tspan font-weight="bold">f̂</tspan><tspan font-size="9" dy="2">colour</tspan><tspan font-size="8" dy="-4">(g)</tspan><tspan dy="2">∥</tspan><tspan font-size="8" dy="-4">2</tspan><tspan dy="4">  +  </tspan><tspan font-style="italic">w</tspan><tspan font-size="9" dy="2">T</tspan><tspan dy="-2"> · ∥</tspan><tspan font-weight="bold">f̂</tspan><tspan font-size="9" dy="2">texture</tspan><tspan font-size="8" dy="-4">(q)</tspan><tspan dy="2"> - </tspan><tspan font-weight="bold">f̂</tspan><tspan font-size="9" dy="2">texture</tspan><tspan font-size="8" dy="-4">(g)</tspan><tspan dy="2">∥</tspan><tspan font-size="8" dy="-4">2</tspan><tspan dy="4">  ]</tspan></text>
+
+    <!-- Connector down to Ranking -->
+    <path d="M 270 96 L 270 114" class="arrow-line" marker-end="url(#arrowhead)" />
+  </g>
+
+  <!-- ==========================================
+       STAGE 8: Similarity Ranking
+       ========================================== -->
+  <g id="stage-8" transform="translate(130, 826)">
+    <rect width="540" height="66" class="box" fill="url(#grad-white)" stroke="#64748B" />
+    <rect x="12" y="9" width="20" height="18" class="badge" fill="#E2E8F0" />
+    <text x="22" y="22" class="badge-text" fill="#334155" text-anchor="middle">8</text>
+    
+    <text x="42" y="23" class="title">Similarity Ranking &amp; Index Sorting</text>
+    <text x="42" y="42" class="subtitle">Global gallery sorting by ascending adaptive distance metric</text>
+    
+    <rect x="15" y="45" width="510" height="16" class="inner-box" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+    <text x="270" y="57" class="math-text" fill="#0F172A" text-anchor="middle">rank(𝒢) = argsort<tspan font-size="8" dy="2">g ∈ {1...N}</tspan><tspan dy="-2"> [ <tspan font-style="italic">D</tspan>(<tspan font-style="italic">I</tspan></tspan><tspan font-size="9" dy="2">q</tspan><tspan dy="-2">, <tspan font-style="italic">I</tspan></tspan><tspan font-size="9" dy="2">g</tspan><tspan dy="-2">) ]</tspan></text>
+
+    <!-- Connector down to Output -->
+    <path d="M 270 66 L 270 84" class="arrow-line" marker-end="url(#arrowhead)" />
+  </g>
+
+  <!-- ==========================================
+       STAGE 9: Top-10 Retrieved Images
+       ========================================== -->
+  <g id="stage-9" transform="translate(130, 912)">
+    <rect width="540" height="122" class="box" fill="url(#grad-output)" stroke="#10B981" />
+    <rect x="12" y="9" width="20" height="18" class="badge" fill="#DCFCE7" />
+    <text x="22" y="22" class="badge-text" fill="#15803D" text-anchor="middle">9</text>
+    
+    <text x="42" y="23" class="title" fill="#15803D">Top-10 Retrieved Images</text>
+    <rect x="428" y="9" width="100" height="18" rx="9" ry="9" fill="#10B981" />
+    <text x="478" y="21" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">RETRIEVAL SET</text>
+    
+    <text x="42" y="43" class="subtitle">Evaluated via Precision@10, Recall@10, F1-Score@10, and Mean Average Precision (mAP)</text>
+
+    <!-- 10 Visual Thumbnail Placeholders Representing Ranked Output -->
+    <g transform="translate(15, 52)">
+      <!-- Thumbnail 1 -->
+      <g transform="translate(0, 0)">
+        <rect width="46" height="42" rx="3" fill="#FFFFFF" stroke="#059669" stroke-width="1.2" />
+        <rect x="0" y="0" width="46" height="12" rx="2" fill="#059669" />
+        <text x="23" y="9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle">Rank 1</text>
+        <path d="M 8 32 L 18 20 L 27 28 L 34 21 L 40 32 Z" fill="#A7F3D0" />
+        <circle cx="33" cy="18" r="3" fill="#34D399" />
+      </g>
+      <!-- Thumbnail 2 -->
+      <g transform="translate(51.5, 0)">
+        <rect width="46" height="42" rx="3" fill="#FFFFFF" stroke="#059669" stroke-width="1.2" />
+        <rect x="0" y="0" width="46" height="12" rx="2" fill="#059669" />
+        <text x="23" y="9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle">Rank 2</text>
+        <path d="M 8 32 L 18 20 L 27 28 L 34 21 L 40 32 Z" fill="#A7F3D0" />
+        <circle cx="33" cy="18" r="3" fill="#34D399" />
+      </g>
+      <!-- Thumbnail 3 -->
+      <g transform="translate(103, 0)">
+        <rect width="46" height="42" rx="3" fill="#FFFFFF" stroke="#059669" stroke-width="1.2" />
+        <rect x="0" y="0" width="46" height="12" rx="2" fill="#059669" />
+        <text x="23" y="9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle">Rank 3</text>
+        <path d="M 8 32 L 18 20 L 27 28 L 34 21 L 40 32 Z" fill="#A7F3D0" />
+        <circle cx="33" cy="18" r="3" fill="#34D399" />
+      </g>
+      <!-- Thumbnail 4 -->
+      <g transform="translate(154.5, 0)">
+        <rect width="46" height="42" rx="3" fill="#FFFFFF" stroke="#059669" stroke-width="1.2" />
+        <rect x="0" y="0" width="46" height="12" rx="2" fill="#059669" />
+        <text x="23" y="9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle">Rank 4</text>
+        <path d="M 8 32 L 18 20 L 27 28 L 34 21 L 40 32 Z" fill="#A7F3D0" />
+        <circle cx="33" cy="18" r="3" fill="#34D399" />
+      </g>
+      <!-- Thumbnail 5 -->
+      <g transform="translate(206, 0)">
+        <rect width="46" height="42" rx="3" fill="#FFFFFF" stroke="#059669" stroke-width="1.2" />
+        <rect x="0" y="0" width="46" height="12" rx="2" fill="#059669" />
+        <text x="23" y="9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle">Rank 5</text>
+        <path d="M 8 32 L 18 20 L 27 28 L 34 21 L 40 32 Z" fill="#A7F3D0" />
+        <circle cx="33" cy="18" r="3" fill="#34D399" />
+      </g>
+      <!-- Thumbnail 6 -->
+      <g transform="translate(257.5, 0)">
+        <rect width="46" height="42" rx="3" fill="#FFFFFF" stroke="#059669" stroke-width="1.2" />
+        <rect x="0" y="0" width="46" height="12" rx="2" fill="#059669" />
+        <text x="23" y="9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle">Rank 6</text>
+        <path d="M 8 32 L 18 20 L 27 28 L 34 21 L 40 32 Z" fill="#A7F3D0" />
+        <circle cx="33" cy="18" r="3" fill="#34D399" />
+      </g>
+      <!-- Thumbnail 7 -->
+      <g transform="translate(309, 0)">
+        <rect width="46" height="42" rx="3" fill="#FFFFFF" stroke="#059669" stroke-width="1.2" />
+        <rect x="0" y="0" width="46" height="12" rx="2" fill="#059669" />
+        <text x="23" y="9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle">Rank 7</text>
+        <path d="M 8 32 L 18 20 L 27 28 L 34 21 L 40 32 Z" fill="#A7F3D0" />
+        <circle cx="33" cy="18" r="3" fill="#34D399" />
+      </g>
+      <!-- Thumbnail 8 -->
+      <g transform="translate(360.5, 0)">
+        <rect width="46" height="42" rx="3" fill="#FFFFFF" stroke="#059669" stroke-width="1.2" />
+        <rect x="0" y="0" width="46" height="12" rx="2" fill="#059669" />
+        <text x="23" y="9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle">Rank 8</text>
+        <path d="M 8 32 L 18 20 L 27 28 L 34 21 L 40 32 Z" fill="#A7F3D0" />
+        <circle cx="33" cy="18" r="3" fill="#34D399" />
+      </g>
+      <!-- Thumbnail 9 -->
+      <g transform="translate(412, 0)">
+        <rect width="46" height="42" rx="3" fill="#FFFFFF" stroke="#059669" stroke-width="1.2" />
+        <rect x="0" y="0" width="46" height="12" rx="2" fill="#059669" />
+        <text x="23" y="9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle">Rank 9</text>
+        <path d="M 8 32 L 18 20 L 27 28 L 34 21 L 40 32 Z" fill="#A7F3D0" />
+        <circle cx="33" cy="18" r="3" fill="#34D399" />
+      </g>
+      <!-- Thumbnail 10 -->
+      <g transform="translate(463.5, 0)">
+        <rect width="46" height="42" rx="3" fill="#FFFFFF" stroke="#059669" stroke-width="1.2" />
+        <rect x="0" y="0" width="46" height="12" rx="2" fill="#059669" />
+        <text x="23" y="9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8" font-weight="700" fill="#FFFFFF" text-anchor="middle">Rank 10</text>
+        <path d="M 8 32 L 18 20 L 27 28 L 34 21 L 40 32 Z" fill="#A7F3D0" />
+        <circle cx="33" cy="18" r="3" fill="#34D399" />
+      </g>
+    </g>
+    
+    <text x="270" y="110" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="600" fill="#047857" text-anchor="middle">Corel-1K evaluation: Peak retrieval performance (mAP = 0.4845, +12.9% relative gain)</text>
+  </g>
+
+  <!-- ==========================================
+       IEEE FIGURE CAPTION (Standard IEEE Format)
+       ========================================== -->
+  <g id="figure-caption" transform="translate(400, 1076)">
+    <!-- Dividing Rule -->
+    <line x1="-360" y1="0" x2="360" y2="0" stroke="#E2E8F0" stroke-width="0.75" />
+    <text x="0" y="24" class="caption" text-anchor="middle">
+      <tspan class="caption-bold">Fig. 1.</tspan> Proposed query-adaptive CBIR pipeline.
+    </text>
+  </g>
+</svg>
