@@ -1,0 +1,173 @@
+{
+  "run_id": "run_20261025T130024Z",
+  "dataset_fingerprint": "842ca497932b388101e9d23220045f1b13ecff0944e2896259e20a7c5b4e9715",
+  "query_seed": 42,
+  "mlp_seed": 42,
+  "counts": {
+    "dataset_images": 1000,
+    "gallery": 899,
+    "queries": 100,
+    "excluded_duplicate_gallery": 1,
+    "mlp_train": 700,
+    "mlp_validation": 199
+  },
+  "aggregate_metrics": {
+    "M1": {
+      "query_count": 100,
+      "mean_average_precision": 0.40446217784177163,
+      "mean_precision_at_10": 0.6190000000000001,
+      "mean_recall_at_10": 0.06889013732833955,
+      "mean_f1_at_10": 0.1239818181818182,
+      "mean_ranking_sort_seconds": 8.15469998633489e-05
+    },
+    "M2": {
+      "query_count": 100,
+      "mean_average_precision": 0.35081567804548974,
+      "mean_precision_at_10": 0.468,
+      "mean_recall_at_10": 0.05206741573033707,
+      "mean_f1_at_10": 0.09370909090909091,
+      "mean_ranking_sort_seconds": 7.306199928279967e-05
+    },
+    "M3": {
+      "query_count": 100,
+      "mean_average_precision": 0.46503600341094925,
+      "mean_precision_at_10": 0.6990000000000001,
+      "mean_recall_at_10": 0.07777902621722844,
+      "mean_f1_at_10": 0.13998181818181815,
+      "mean_ranking_sort_seconds": 7.949500053655356e-05
+    },
+    "M4": {
+      "query_count": 100,
+      "mean_average_precision": 0.43365876276024584,
+      "mean_precision_at_10": 0.6730000000000003,
+      "mean_recall_at_10": 0.07489263420724093,
+      "mean_f1_at_10": 0.1347858585858586,
+      "mean_ranking_sort_seconds": 7.695199456065893e-05
+    },
+    "M5": {
+      "query_count": 100,
+      "mean_average_precision": 0.479794163851188,
+      "mean_precision_at_10": 0.7100000000000002,
+      "mean_recall_at_10": 0.07899999999999999,
+      "mean_f1_at_10": 0.14217979797979796,
+      "mean_ranking_sort_seconds": 0.00016683999972883613
+    },
+    "M6": {
+      "query_count": 100,
+      "mean_average_precision": 0.4605358605638803,
+      "mean_precision_at_10": 0.6960000000000002,
+      "mean_recall_at_10": 0.07744319600499373,
+      "mean_f1_at_10": 0.13937777777777777,
+      "mean_ranking_sort_seconds": 0.00015316400269512086
+    }
+  },
+  "m5_m6_paired_ap_difference": {
+    "estimand": "mean paired per-query AP difference M5 - M6 on this fixed corrected query/gallery split",
+    "mean": 0.01925830328730772,
+    "median": 0.00021360828458250047,
+    "standard_deviation": 0.07644996307570297,
+    "positive_queries": 53,
+    "negative_queries": 47,
+    "tied_queries": 0,
+    "category_mean_differences_positive": 5,
+    "category_mean_differences_negative": 5,
+    "inference": "Descriptive only; no inferential p-value is reported. Query APs share the fixed gallery and are category-dependent."
+  },
+  "category_m5_minus_m6_ap": [
+    {
+      "category": "beaches",
+      "m5_minus_m6_mean_ap": 0.0005053637489408347
+    },
+    {
+      "category": "bus",
+      "m5_minus_m6_mean_ap": -0.016481569723176936
+    },
+    {
+      "category": "dinosaurs",
+      "m5_minus_m6_mean_ap": 0.005518153858107833
+    },
+    {
+      "category": "elephants",
+      "m5_minus_m6_mean_ap": 0.0052101896888737675
+    },
+    {
+      "category": "flowers",
+      "m5_minus_m6_mean_ap": 0.2103364405243477
+    },
+    {
+      "category": "foods",
+      "m5_minus_m6_mean_ap": -0.004715368903970063
+    },
+    {
+      "category": "horses",
+      "m5_minus_m6_mean_ap": -0.0005369465208405755
+    },
+    {
+      "category": "monuments",
+      "m5_minus_m6_mean_ap": 0.00016900704447431192
+    },
+    {
+      "category": "mountains_and_snow",
+      "m5_minus_m6_mean_ap": -0.006637622955348199
+    },
+    {
+      "category": "peolpe_and_villages_in_Africa",
+      "m5_minus_m6_mean_ap": -0.000784613888331287
+    }
+  ],
+  "normalization_parameters": {
+    "color_min": [
+      0.08091017603874207,
+      0.04074139520525932,
+      -4.153613567352295,
+      0.03903350606560707,
+      0.08197573572397232,
+      -2.398292303085327,
+      0.14811141788959503,
+      0.10099788010120392,
+      -4.221683502197266
+    ],
+    "color_max": [
+      0.8709835410118103,
+      0.4574229121208191,
+      6.767035007476807,
+      0.8727905750274658,
+      0.40778177976608276,
+      4.985845565795898,
+      0.869299590587616,
+      0.38927483558654785,
+      2.856536626815796
+    ],
+    "texture_min": [
+      18.241527557373047,
+      0.6628139615058899,
+      0.008167233318090439,
+      0.06205733120441437
+    ],
+    "texture_max": [
+      1987.7808837890625,
+      0.9959908127784729,
+      0.6095203757286072,
+      0.8432204723358154
+    ]
+  },
+  "m6_mean_weights": [
+    0.5784038992226124,
+    0.42159609973430634
+  ],
+  "timing": {
+    "feature_extraction_total_seconds": 44.98431269999128,
+    "feature_extraction_mean_seconds_per_image": 0.045022992091276706,
+    "training_seconds": 24.961838399991393,
+    "mlp_inference_mean_seconds_per_query": 0.00011310400208458304,
+    "ranking_sort_mean_seconds_per_query": {
+      "M1": 8.15469998633489e-05,
+      "M2": 7.306199928279967e-05,
+      "M3": 7.949500053655356e-05,
+      "M4": 7.695199456065893e-05,
+      "M5": 0.00016683999972883613,
+      "M6": 0.00015316400269512086
+    },
+    "method": "Feature extraction timed per image; M5 forward pass timed per query; ranking timed as distance calculation plus argsort. End-to-end query latency adds query feature extraction, M5 inference where applicable, and ranking; gallery preprocessing/training excluded."
+  }
+}

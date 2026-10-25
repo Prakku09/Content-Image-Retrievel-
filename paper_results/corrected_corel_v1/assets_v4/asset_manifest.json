@@ -1,0 +1,132 @@
+{
+    "source_run_id":  "run_20261025T130024Z",
+    "source_run_directory":  "../validation/corel_reference",
+    "source_revision":  "d3374a5e3a2b175efe38a46eeff7cfe8a4df3ca6",
+    "source_results_sha256":  "8290d53f39a85affed2e78ba28a71febeb892a5ea268d67ea5bd7638bc47ebd8",
+    "source_validation_sha256":  "35ff2dd6977f650525d7bece7e48d3af044a69b27bf832c64793b800c93e5ac3",
+    "source_checkpoint_sha256":  "4ebb783437dc984b2a3872ff2b7d1b7e34c40489e430139f345b5d2dd1737f34",
+    "source_query_metrics_sha256":  "aa78a2f5ec40b2e6dee285c9ebb4e9869076556076bb36570f240b543e598ff5",
+    "source_query_weights_sha256":  "7349dac9e755c1a46c3df1d0b931ab1b473a049f2daaf911692257149c1fe478",
+    "source_rankings_sha256":  "7d252e35e1292de389568e020730959ae11d2f44fe2eb1878b6435256c6c2843",
+    "gallery_query_training_validation_counts":  {
+                                                     "dataset_images":  1000,
+                                                     "gallery":  899,
+                                                     "queries":  100,
+                                                     "excluded_duplicate_gallery":  1,
+                                                     "mlp_train":  700,
+                                                     "mlp_validation":  199
+                                                 },
+    "output_files_sha256":  {
+                                "category_m5_m6_comparison.csv":  "231dd4093f95be069eca8b227367bc7ac4966883481bbf2726d82fc6bfa40d43",
+                                "category_mean_weights.csv":  "90e90184feabd6c64fff821f88a15efb2177b6d4d13d28b8b94146c67be19fd7",
+                                "fig1_corrected_pipeline.png":  "86e063186178656a28e0fd34bf41c4ff2988e6c12f29323fb645cb5b48bd396f",
+                                "fig1_corrected_pipeline.svg":  "80bd3eb99e0c8d3596c9fbf761a89b2d4db4058bb67e6dc87e7cbe1752e67514",
+                                "fig2_corrected_grouped_metrics.png":  "5ff1aacce92c62ebce5f8f152c21fad6ab89d7130671ceaa5d65a452c22dba1e",
+                                "fig2_corrected_grouped_metrics.svg":  "3fb46af6e657fde34e820663c2d3324e7d1164774178e2b5efe37236f0bbc72f",
+                                "fig3_corrected_weight_distributions.png":  "60197ddac62064ec398aeff2d4d8b6f66f7072f9cd011c10dd730adb57b45571",
+                                "fig3_corrected_weight_distributions.svg":  "c6abe8c6a4a13584d5a0800482fd99fec697b6c0b2e4c7190d3f64a89fa3271f",
+                                "fig4_corrected_category_weights.png":  "f962b98118451c8392cc98180d1959f60a94a2bea6acee1069f2be841011924a",
+                                "fig4_corrected_category_weights.svg":  "4423c521b7e7f3dfd729db3e923fc23b7400afb5284cd4511ceac5e216d35c10",
+                                "fig5_corrected_qualitative_example.png":  "af69506f1df824c1ae19186b78f0451b8cd9f44fe3552e3cc5a76de53e01d925",
+                                "fig5_corrected_qualitative_example.svg":  "35d9b46f697cc9ce9edcd64301c403cb5647c44b89f517e0d6affc751f7ccf02",
+                                "fig6_corrected_map.png":  "a98b40e830e2b5626daa68240d871253adb707d01b6d3c075ce4743791013fd8",
+                                "fig6_corrected_map.svg":  "e74ceb3283de2711d6fa596510d49bc8dd9c4ee5570fa10f2f5e3977f56c8d51",
+                                "fig7_corrected_category_ap_difference.png":  "d4e820b1dd15757c91872a73aa1291281a24639e3c970f2bce6d67b74d6c775c",
+                                "fig7_corrected_category_ap_difference.svg":  "0079f081c8cdca1fd3764896346a9a8c16cbef815c4a3fe4ffdc2d8a81262af2",
+                                "table_III_corrected_metrics.csv":  "b20e788ad2548eb37c4130415261344ee922d359e4f51ab8ff114ed391ec97ba"
+                            },
+    "figure_data":  {
+                        "fig2_corrected_grouped_metrics":  {
+                                                               "models":  [
+                                                                              "M1",
+                                                                              "M2",
+                                                                              "M3",
+                                                                              "M4",
+                                                                              "M5",
+                                                                              "M6"
+                                                                          ],
+                                                               "metrics":  [
+                                                                               "Precision@10",
+                                                                               "Recall@10",
+                                                                               "F1@10",
+                                                                               "mAP"
+                                                                           ],
+                                                               "values":  {
+                                                                              "M1":  {
+                                                                                         "Precision@10":  0.6190000000000001,
+                                                                                         "Recall@10":  0.06889013732833955,
+                                                                                         "F1@10":  0.1239818181818182,
+                                                                                         "mAP":  0.40446217784177163
+                                                                                     },
+                                                                              "M2":  {
+                                                                                         "Precision@10":  0.468,
+                                                                                         "Recall@10":  0.05206741573033707,
+                                                                                         "F1@10":  0.09370909090909091,
+                                                                                         "mAP":  0.35081567804548974
+                                                                                     },
+                                                                              "M3":  {
+                                                                                         "Precision@10":  0.6990000000000001,
+                                                                                         "Recall@10":  0.07777902621722844,
+                                                                                         "F1@10":  0.13998181818181815,
+                                                                                         "mAP":  0.46503600341094925
+                                                                                     },
+                                                                              "M4":  {
+                                                                                         "Precision@10":  0.6730000000000003,
+                                                                                         "Recall@10":  0.07489263420724093,
+                                                                                         "F1@10":  0.1347858585858586,
+                                                                                         "mAP":  0.43365876276024584
+                                                                                     },
+                                                                              "M5":  {
+                                                                                         "Precision@10":  0.7100000000000002,
+                                                                                         "Recall@10":  0.07899999999999999,
+                                                                                         "F1@10":  0.14217979797979796,
+                                                                                         "mAP":  0.479794163851188
+                                                                                     },
+                                                                              "M6":  {
+                                                                                         "Precision@10":  0.6960000000000002,
+                                                                                         "Recall@10":  0.07744319600499373,
+                                                                                         "F1@10":  0.13937777777777777,
+                                                                                         "mAP":  0.4605358605638803
+                                                                                     }
+                                                                          },
+                                                               "caption":  "Retrieval metrics for M1-M6 on the corrected 899-image Corel gallery and 100 held-out queries."
+                                                           },
+                        "fig6_corrected_map":  {
+                                                   "mAP":  {
+                                                               "M1":  0.40446217784177163,
+                                                               "M2":  0.35081567804548974,
+                                                               "M3":  0.46503600341094925,
+                                                               "M4":  0.43365876276024584,
+                                                               "M5":  0.479794163851188,
+                                                               "M6":  0.4605358605638803
+                                                           }
+                                               },
+                        "fig5_query":  "training_set/beaches/118.jpg",
+                        "fig5_rankings":  {
+                                              "M3":  [
+                                                         "training_set/monuments/246.jpg",
+                                                         "training_set/elephants/557.jpg",
+                                                         "training_set/elephants/588.jpg",
+                                                         "training_set/mountains_and_snow/877.jpg",
+                                                         "training_set/mountains_and_snow/855.jpg",
+                                                         "training_set/beaches/117.jpg",
+                                                         "training_set/mountains_and_snow/889.jpg",
+                                                         "training_set/monuments/232.jpg",
+                                                         "training_set/bus/353.jpg",
+                                                         "training_set/mountains_and_snow/891.jpg"
+                                                     ],
+                                              "M5":  [
+                                                         "training_set/monuments/246.jpg",
+                                                         "training_set/elephants/557.jpg",
+                                                         "training_set/mountains_and_snow/877.jpg",
+                                                         "training_set/elephants/588.jpg",
+                                                         "training_set/mountains_and_snow/855.jpg",
+                                                         "training_set/monuments/296.jpg",
+                                                         "training_set/elephants/597.jpg",
+                                                         "training_set/beaches/117.jpg",
+                                                         "training_set/beaches/120.jpg",
+                                                         "training_set/monuments/271.jpg"
+                                                     ]
+                                          }
+                    }
+}

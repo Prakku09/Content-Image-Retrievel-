@@ -1,5 +1,16 @@
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
 .DS_Store
 
 # Part 2 Generated Binary Artifacts & Plots
@@ -7,11 +18,33 @@ output/part2/adaptive_weight_mlp.pt
 output/part2/part2_results.pkl
 output/part2/plots/
 
-# Local settings and temporary files
+# Local datasets, caches, and model artifacts
+/dataset/
+/datasets/
+/Corel-1K/
+/Oxford-IIIT-Pet/
+*.pkl
+*.pickle
+*.pt
+*.pth
+*.npz
+*.npy
+assets_v4.zip
+
+# Local settings, credentials, and temporary files
 .env
+.env.*
+!.env.example
+.secrets/
+credentials.json
+service-account*.json
+*.pem
+*.key
 .vscode/
 .idea/
 *.tmp
 *.temp
 *.log
+*.bak
+*.swp
 .ipynb_checkpoints

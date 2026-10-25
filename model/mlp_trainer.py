@@ -1,3 +1,6 @@
+import copy
+import hashlib
+import json
 import numpy as np
 import torch
 import torch.nn as nn
@@ -5,6 +8,7 @@ import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 from pathlib import Path
 import pickle
+import random
 import config
 
 try:
@@ -133,7 +137,12 @@ def build_triplets(indices, color_feats, texture_feats, labels, num_p=5, num_n=1
         np.array(d_texture_neg_list)
     )
 
-def train_mlp(data_path=None, seed=config.PART2_SEED):
+def train_mlp(
+    data_path=None,
+    seed=config.PART2_SEED,
+    checkpoint_path=None,
+    split_indices=None,
+):
     """
     Orchestrates the entire training protocol, splits the gallery, builds triplets,
     trains the PyTorch model with early stopping, and returns training history.
@@ -143,19 +152,112 @@ def train_mlp(data_path=None, seed=config.PART2_SEED):
         
     torch.manual_seed(seed)
     np.random.seed(seed)
+    random.seed(seed)
     
     # 1. Load Part 1 Features
     with open(data_path, 'rb') as f:
         data = pickle.load(f)
-        
+
+    feature_fingerprint = data.get('feature_fingerprint')
+    if not feature_fingerprint:
+        raise ValueError(
+            "Feature cache has no verified fingerprint; rerun the feature stage before training."
+        )
+
     gallery_color = data['normalized_gallery_color']
     gallery_texture = data['normalized_gallery_texture']
-    # Reconstruct gallery labels from relative paths
     gallery_labels = [Path(p).parent.name for p in data['gallery_image_paths']]
+    if split_indices is None:
+        train_idx, val_idx = get_internal_split(gallery_labels, seed=seed)
+        split_mode = 'stratified_random'
+    else:
+        if not isinstance(split_indices, dict):
+            raise ValueError("split_indices must contain train_indices and val_indices.")
+        try:
+            train_idx = [int(index) for index in split_indices['train_indices']]
+            val_idx = [int(index) for index in split_indices['val_indices']]
+        except (KeyError, TypeError, ValueError) as error:
+            raise ValueError(
+                "split_indices must contain valid train_indices and val_indices."
+            ) from error
+        split_mode = 'explicit_group_disjoint'
+
+    expected_indices = set(range(len(gallery_labels)))
+    if (
+        not train_idx
+        or not val_idx
+        or len(set(train_idx)) != len(train_idx)
+        or len(set(val_idx)) != len(val_idx)
+        or set(train_idx) & set(val_idx)
+        or set(train_idx) | set(val_idx) != expected_indices
+        or any(
+            index < 0 or index >= len(gallery_labels)
+            for index in train_idx + val_idx
+        )
+    ):
+        raise ValueError(
+            "Internal training/validation indices must form a disjoint gallery partition."
+        )
+
+    split_fingerprint = hashlib.sha256(json.dumps({
+        'mode': split_mode,
+        'train_indices': sorted(train_idx),
+        'val_indices': sorted(val_idx),
+    }, sort_keys=True).encode('utf-8')).hexdigest()
+    model_source_fingerprint = _model_source_fingerprint()
+    training_config = {
+        'training_protocol_version': 3,
+        'seed': int(seed),
+        'batch_size': config.BATCH_SIZE,
+        'epochs': config.EPOCHS,
+        'learning_rate': config.LEARNING_RATE,
+        'margin': config.MARGIN,
+        'patience': 10,
+        'train_per_category': config.INTERNAL_TRAIN_PER_CAT,
+        'validation_per_category': config.INTERNAL_VAL_PER_CAT,
+        'positive_samples_per_query': 5,
+        'negative_samples_per_query': 10,
+        'validation_positive_samples_per_query': 2,
+        'validation_negative_samples_per_query': 5,
+        'model_dimensions': [config.TOTAL_FEATURE_DIM, 16, 8, 2],
+        'model_source_fingerprint': model_source_fingerprint,
+        'split_mode': split_mode,
+        'split_fingerprint': split_fingerprint,
+        'train_count': len(train_idx),
+        'validation_count': len(val_idx),
+    }
+
+    model_save_path = (
+        Path(checkpoint_path)
+        if checkpoint_path is not None
+        else config.MODEL_CHECKPOINT_PATH
+    )
+    if model_save_path.exists():
+        try:
+            checkpoint = torch.load(
+                model_save_path, map_location='cpu', weights_only=True
+            )
+        except pickle.UnpicklingError:
+            checkpoint = None
+        if (
+            isinstance(checkpoint, dict)
+            and checkpoint.get('checkpoint_format') == 2
+            and checkpoint.get('feature_fingerprint') == feature_fingerprint
+            and checkpoint.get('training_config') == training_config
+        ):
+            model = AdaptiveWeightMLP()
+            model.load_state_dict(checkpoint['model_state_dict'])
+            print(f"Reusing verified checkpoint: {model_save_path}")
+            return model, checkpoint['split_info'], checkpoint['training_history']
+        print(
+            "Existing checkpoint is unreadable by safe weights-only loading or "
+            "lacks matching provenance; training a fresh model."
+        )
     
     # 2. Get deterministic internal split
     print("Generating deterministic internal training/validation split...")
-    train_idx, val_idx = get_internal_split(gallery_labels, seed=seed)
+    train_idx = [int(index) for index in train_idx]
+    val_idx = [int(index) for index in val_idx]
     
     # 3. Build Triplets
     print("Building training and validation triplets...")
@@ -165,7 +267,14 @@ def train_mlp(data_path=None, seed=config.PART2_SEED):
     train_dataset = TripletDataset(*train_triplets)
     val_dataset = TripletDataset(*val_triplets)
     
-    train_loader = DataLoader(train_dataset, batch_size=config.BATCH_SIZE, shuffle=True)
+    loader_generator = torch.Generator()
+    loader_generator.manual_seed(seed)
+    train_loader = DataLoader(
+        train_dataset,
+        batch_size=config.BATCH_SIZE,
+        shuffle=True,
+        generator=loader_generator
+    )
     val_loader = DataLoader(val_dataset, batch_size=config.BATCH_SIZE, shuffle=False)
     
     print(f"Constructed {len(train_dataset)} training triplets and {len(val_dataset)} validation triplets.")
@@ -178,7 +287,7 @@ def train_mlp(data_path=None, seed=config.PART2_SEED):
     # Early stopping trackers
     best_val_loss = float('inf')
     best_epoch = 0
-    patience = 10
+    patience = training_config['patience']
     patience_counter = 0
     best_weights = None
     
@@ -244,7 +353,7 @@ def train_mlp(data_path=None, seed=config.PART2_SEED):
         if val_loss < best_val_loss:
             best_val_loss = val_loss
             best_epoch = epoch
-            best_weights = model.state_dict().copy()
+            best_weights = copy.deepcopy(model.state_dict())
             patience_counter = 0
         else:
             patience_counter += 1
@@ -256,16 +365,36 @@ def train_mlp(data_path=None, seed=config.PART2_SEED):
     model.load_state_dict(best_weights)
     
     # Save the trained model
-    model_save_path = config.PART2_OUTPUT_DIR / "adaptive_weight_mlp.pt"
-    torch.save(model.state_dict(), model_save_path)
-    print(f"Best model weights saved to: {model_save_path}")
-    
-    # Save training/validation splits indices
     split_info = {
         'train_indices': train_idx,
         'val_indices': val_idx,
-        'best_epoch': best_epoch,
-        'best_val_loss': best_val_loss
+        'best_epoch': int(best_epoch),
+        'best_val_loss': float(best_val_loss)
     }
+    checkpoint = {
+        'checkpoint_format': 2,
+        'feature_fingerprint': feature_fingerprint,
+        'training_config': training_config,
+        'model_state_dict': model.state_dict(),
+        'split_info': split_info,
+        'training_history': history,
+    }
+    torch.save(checkpoint, model_save_path)
+    print(f"Best model weights saved to: {model_save_path}")
     
     return model, split_info, history
+
+
+def _model_source_fingerprint():
+    """Fingerprint model and trainer code so incompatible checkpoints are not reused."""
+    source_root = Path(__file__).resolve().parent
+    digest = hashlib.sha256()
+    for path in (
+        source_root / 'mlp_model.py',
+        Path(__file__).resolve(),
+    ):
+        digest.update(path.name.encode('utf-8'))
+        with path.open('rb') as source:
+            for chunk in iter(lambda: source.read(1024 * 1024), b''):
+                digest.update(chunk)
+    return digest.hexdigest()

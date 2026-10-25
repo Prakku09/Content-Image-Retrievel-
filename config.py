@@ -104,3 +104,15 @@ FIGURES_DIR.mkdir(parents=True, exist_ok=True)
 FEATURES_PKL_PATH = OUTPUT_DIR / "corel1k_features.pkl"
 MODEL_CHECKPOINT_PATH = PART2_OUTPUT_DIR / "adaptive_weight_mlp.pt"
 PART2_RESULTS_PATH = PART2_OUTPUT_DIR / "part2_results.pkl"
+EXPERIMENT_RESULTS_PATH = PART2_OUTPUT_DIR / "experiment_results.pkl"
+EXPERIMENT_CONFIG_PATH = PART2_OUTPUT_DIR / "experiment_config.json"
+QUERY_WEIGHTS_CSV_PATH = PART2_OUTPUT_DIR / "query_weights.csv"
+TRAINING_HISTORY_PATH = PART2_OUTPUT_DIR / "training_history.json"
+
+# Separately versioned, prespecified statistical evaluation; does not overwrite
+# the original M1-M6 experiment outputs.
+STATISTICAL_OUTPUT_DIR = OUTPUT_DIR / "statistical_evaluation_v1"
+STATISTICAL_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+STATISTICAL_SEEDS = [42, 123, 2025, 31415, 271828]
+STATISTICAL_BOOTSTRAP_REPLICATES = 10000
+STATISTICAL_PERMUTATION_REPLICATES = 100000

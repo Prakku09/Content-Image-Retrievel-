@@ -1,0 +1,64 @@
+{
+  "status": "passed",
+  "query_count": 100,
+  "gallery_count": 899,
+  "training_count": 700,
+  "validation_count": 199,
+  "models_checked": [
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "M5",
+    "M6"
+  ],
+  "per_query_metric_rows_checked": 600,
+  "maximum_metric_absolute_error": 0.0,
+  "aggregate_metrics_recomputed": {
+    "M1": {
+      "query_count": 100,
+      "mAP": 0.40446217784177163,
+      "precision_at_10": 0.6190000000000001,
+      "recall_at_10": 0.06889013732833955,
+      "f1_at_10": 0.1239818181818182
+    },
+    "M2": {
+      "query_count": 100,
+      "mAP": 0.35081567804548974,
+      "precision_at_10": 0.468,
+      "recall_at_10": 0.05206741573033707,
+      "f1_at_10": 0.09370909090909091
+    },
+    "M3": {
+      "query_count": 100,
+      "mAP": 0.46503600341094925,
+      "precision_at_10": 0.6990000000000001,
+      "recall_at_10": 0.07777902621722844,
+      "f1_at_10": 0.13998181818181815
+    },
+    "M4": {
+      "query_count": 100,
+      "mAP": 0.43365876276024584,
+      "precision_at_10": 0.6730000000000003,
+      "recall_at_10": 0.07489263420724093,
+      "f1_at_10": 0.1347858585858586
+    },
+    "M5": {
+      "query_count": 100,
+      "mAP": 0.479794163851188,
+      "precision_at_10": 0.7100000000000002,
+      "recall_at_10": 0.07899999999999999,
+      "f1_at_10": 0.14217979797979796
+    },
+    "M6": {
+      "query_count": 100,
+      "mAP": 0.4605358605638803,
+      "precision_at_10": 0.6960000000000002,
+      "recall_at_10": 0.07744319600499373,
+      "f1_at_10": 0.13937777777777777
+    }
+  },
+  "m6_weights_match_new_m5_mean": true,
+  "all_manifest_artifact_hashes_verified": true,
+  "errors": []
+}

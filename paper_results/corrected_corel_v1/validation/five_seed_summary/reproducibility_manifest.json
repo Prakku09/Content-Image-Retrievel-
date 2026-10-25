@@ -1,0 +1,422 @@
+{
+  "analysis_id": "summary_v1",
+  "created_from_prespecified_seed_plan": "<repository-root>\\output\\corrected_corel_robustness_v1\\seed_plan.json",
+  "source_revision": "d3374a5e3a2b175efe38a46eeff7cfe8a4df3ca6",
+  "dirty_worktree": [
+    " M ALL_VISUALS.md",
+    " M FINAL_PAPER_FIGURE_AND_TABLE_INVENTORY.md",
+    " M README.md",
+    " M config.py",
+    " M figures/cbir_model_comparison_annotated.png",
+    " M figures/cbir_model_comparison_annotated.svg",
+    " M figures/cbir_model_comparison_grouped_bar.png",
+    " M figures/cbir_model_comparison_grouped_bar.svg",
+    " M figures/fig2_model_performance_comparison.png",
+    " M figures/fig3_weight_distributions.png",
+    " M figures/fig4_category_weights.png",
+    " M figures/fig5_query_m3_vs_m5_beaches.png",
+    " M implementation_plan.md",
+    " M main.py",
+    " M model/mlp_trainer.py",
+    " M output/corel1k_features.pkl",
+    " M output/part2/part2_experiment_report.md",
+    " M retrieval/evaluation.py",
+    " M retrieval/retrieval.py",
+    " M visualization/generate_grouped_bar_chart.py",
+    " M visualization/visualization.py",
+    " M visualization/visualize_part2.py",
+    "?? corrected_corel_run.py",
+    "?? external_dataset.py",
+    "?? external_transfer.py",
+    "?? output/corrected_corel_robustness_v1/",
+    "?? output/corrected_corel_v1/",
+    "?? output/external_transfer_oxford_pet/",
+    "?? output/external_transfer_oxford_pet_corrected_v1/",
+    "?? output/final_implementation_signoff_v1/",
+    "?? output/final_release_audit_v1/",
+    "?? output/part2/experiment_config.json",
+    "?? output/part2/experiment_results.pkl",
+    "?? output/part2/query_weights.csv",
+    "?? output/part2/training_history.json",
+    "?? output/statistical_evaluation_audit_v1/",
+    "?? output/statistical_evaluation_audit_v2/",
+    "?? output/statistical_evaluation_v1/",
+    "?? statistical_evaluation.py",
+    "?? tests/",
+    "?? validate_corrected_corel_run.py",
+    "?? validate_external_run.py"
+  ],
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "seed_runs": [
+    {
+      "seed": 42,
+      "run_id": "run_20261025T141322Z",
+      "gallery_count": 900,
+      "query_count": 100,
+      "train_count": 700,
+      "validation_count": 200,
+      "run_dir": "<repository-root>\\output\\corrected_corel_robustness_v1\\runs\\seed_42\\run_20261025T141322Z",
+      "validation_status": "passed"
+    },
+    {
+      "seed": 123,
+      "run_id": "run_20261025T141647Z",
+      "gallery_count": 900,
+      "query_count": 100,
+      "train_count": 700,
+      "validation_count": 200,
+      "run_dir": "<repository-root>\\output\\corrected_corel_robustness_v1\\runs\\seed_123\\run_20261025T141647Z",
+      "validation_status": "passed"
+    },
+    {
+      "seed": 2025,
+      "run_id": "run_20261025T141825Z",
+      "gallery_count": 900,
+      "query_count": 100,
+      "train_count": 700,
+      "validation_count": 200,
+      "run_dir": "<repository-root>\\output\\corrected_corel_robustness_v1\\runs\\seed_2025\\run_20261025T141825Z",
+      "validation_status": "passed"
+    },
+    {
+      "seed": 31415,
+      "run_id": "run_20261025T142013Z",
+      "gallery_count": 900,
+      "query_count": 100,
+      "train_count": 700,
+      "validation_count": 200,
+      "run_dir": "<repository-root>\\output\\corrected_corel_robustness_v1\\runs\\seed_31415\\run_20261025T142013Z",
+      "validation_status": "passed"
+    },
+    {
+      "seed": 271828,
+      "run_id": "run_20261025T142152Z",
+      "gallery_count": 900,
+      "query_count": 100,
+      "train_count": 700,
+      "validation_count": 200,
+      "run_dir": "<repository-root>\\output\\corrected_corel_robustness_v1\\runs\\seed_271828\\run_20261025T142152Z",
+      "validation_status": "passed"
+    }
+  ],
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "run_id": "run_20261025T141322Z",
+      "gallery_count": 900,
+      "query_count": 100,
+      "train_count": 700,
+      "validation_count": 200,
+      "M1_mAP": 0.4072129173956934,
+      "M2_mAP": 0.3475468643895924,
+      "M3_mAP": 0.4632068654008122,
+      "M4_mAP": 0.4383433195217558,
+      "M5_mAP": 0.48296032791375126,
+      "M6_mAP": 0.4582584729691947,
+      "M5_minus_M6_mAP": 0.024701854944556567,
+      "paired_AP_mean": 0.024701854944556505,
+      "paired_AP_median": 0.00037520162082278763,
+      "positive_queries": 57,
+      "negative_queries": 41,
+      "tied_queries": 2
+    },
+    {
+      "seed": 123,
+      "run_id": "run_20261025T141647Z",
+      "gallery_count": 900,
+      "query_count": 100,
+      "train_count": 700,
+      "validation_count": 200,
+      "M1_mAP": 0.41848398306124585,
+      "M2_mAP": 0.3268737102772716,
+      "M3_mAP": 0.47076805521060977,
+      "M4_mAP": 0.44646750830265924,
+      "M5_mAP": 0.48421406770068115,
+      "M6_mAP": 0.46874618363136206,
+      "M5_minus_M6_mAP": 0.015467884069319093,
+      "paired_AP_mean": 0.015467884069319014,
+      "paired_AP_median": 0.0,
+      "positive_queries": 48,
+      "negative_queries": 49,
+      "tied_queries": 3
+    },
+    {
+      "seed": 2025,
+      "run_id": "run_20261025T141825Z",
+      "gallery_count": 900,
+      "query_count": 100,
+      "train_count": 700,
+      "validation_count": 200,
+      "M1_mAP": 0.427715243148203,
+      "M2_mAP": 0.3371969237734918,
+      "M3_mAP": 0.48439641541121864,
+      "M4_mAP": 0.4563047277523312,
+      "M5_mAP": 0.49908980783900203,
+      "M6_mAP": 0.48393809349842015,
+      "M5_minus_M6_mAP": 0.015151714340581879,
+      "paired_AP_mean": 0.015151714340581874,
+      "paired_AP_median": 0.0004786557685971249,
+      "positive_queries": 56,
+      "negative_queries": 44,
+      "tied_queries": 0
+    },
+    {
+      "seed": 31415,
+      "run_id": "run_20261025T142013Z",
+      "gallery_count": 900,
+      "query_count": 100,
+      "train_count": 700,
+      "validation_count": 200,
+      "M1_mAP": 0.39008833179850216,
+      "M2_mAP": 0.3391105320985971,
+      "M3_mAP": 0.457717725996337,
+      "M4_mAP": 0.4237641581006202,
+      "M5_mAP": 0.46929069459701434,
+      "M6_mAP": 0.4530388686559979,
+      "M5_minus_M6_mAP": 0.01625182594101643,
+      "paired_AP_mean": 0.016251825941016273,
+      "paired_AP_median": 0.0002389343553438894,
+      "positive_queries": 51,
+      "negative_queries": 48,
+      "tied_queries": 1
+    },
+    {
+      "seed": 271828,
+      "run_id": "run_20261025T142152Z",
+      "gallery_count": 900,
+      "query_count": 100,
+      "train_count": 700,
+      "validation_count": 200,
+      "M1_mAP": 0.4285368987966363,
+      "M2_mAP": 0.3418334069500287,
+      "M3_mAP": 0.47714439247616114,
+      "M4_mAP": 0.45781828926452184,
+      "M5_mAP": 0.493633566812117,
+      "M6_mAP": 0.47724890731663044,
+      "M5_minus_M6_mAP": 0.016384659495486564,
+      "paired_AP_mean": 0.01638465949548652,
+      "paired_AP_median": 0.0003638240533894721,
+      "positive_queries": 54,
+      "negative_queries": 46,
+      "tied_queries": 0
+    }
+  ],
+  "seed_level_descriptive_summary": {
+    "M5_mAP": {
+      "mean_across_seeds": 0.4858376929725131,
+      "sample_sd_across_seeds": 0.011413946965238527
+    },
+    "M6_mAP": {
+      "mean_across_seeds": 0.4682461052143211,
+      "sample_sd_across_seeds": 0.012831132666580218
+    },
+    "M5_minus_M6_mean": 0.017591587758192105,
+    "M5_minus_M6_sample_sd": 0.004008448473900604,
+    "positive_seed_differences": 5,
+    "negative_seed_differences": 0,
+    "inference": "Descriptive only. Seeds share images and gallery/query samples; observations are not independent experimental replications."
+  },
+  "validation": "All five runs independently recomputed rankings and per-query metrics exactly; max absolute metric error 0.0.",
+  "overlap_summary": {
+    "pairwise_query_intersections": [
+      {
+        "seed_a": 42,
+        "seed_b": 123,
+        "shared_query_images": 18,
+        "unique_in_union": 182
+      },
+      {
+        "seed_a": 42,
+        "seed_b": 2025,
+        "shared_query_images": 14,
+        "unique_in_union": 186
+      },
+      {
+        "seed_a": 42,
+        "seed_b": 31415,
+        "shared_query_images": 8,
+        "unique_in_union": 192
+      },
+      {
+        "seed_a": 42,
+        "seed_b": 271828,
+        "shared_query_images": 9,
+        "unique_in_union": 191
+      },
+      {
+        "seed_a": 123,
+        "seed_b": 2025,
+        "shared_query_images": 18,
+        "unique_in_union": 182
+      },
+      {
+        "seed_a": 123,
+        "seed_b": 31415,
+        "shared_query_images": 7,
+        "unique_in_union": 193
+      },
+      {
+        "seed_a": 123,
+        "seed_b": 271828,
+        "shared_query_images": 16,
+        "unique_in_union": 184
+      },
+      {
+        "seed_a": 2025,
+        "seed_b": 31415,
+        "shared_query_images": 9,
+        "unique_in_union": 191
+      },
+      {
+        "seed_a": 2025,
+        "seed_b": 271828,
+        "shared_query_images": 7,
+        "unique_in_union": 193
+      },
+      {
+        "seed_a": 31415,
+        "seed_b": 271828,
+        "shared_query_images": 9,
+        "unique_in_union": 191
+      }
+    ],
+    "unique_query_images_across_all_runs": 399
+  },
+  "commands": [
+    "python corrected_corel_run.py --dataset-root <Corel dataset> --query-seed SEED --mlp-seed SEED --group-disjoint-queries --output-root output/corrected_corel_robustness_v1/runs/seed_SEED",
+    "python validate_corrected_corel_run.py <run_dir>",
+    "python -m unittest discover -s tests",
+    "python -m compileall -q .",
+    "git diff --check"
+  ],
+  "source_file_hashes_sha256": {
+    "config.py": "080e81279f223431b5fa5694ff6b91c813866e49faf25b0655e2a28c6e4be14a",
+    "main.py": "02251df1cb4da3f3ff5122aa770e79faabf996a9c0a4832759261b1424749715",
+    "corrected_corel_run.py": "ab10c2fdfb1a5882685737b9c467c619e1cb198f98865aaa4f54b849b627b715",
+    "validate_corrected_corel_run.py": "8f9f638cdbfa76e4cb5c7799f16f903cd462d8b616be8a1fc25a04c1c8354141",
+    "model/mlp_trainer.py": "e452196583b95cdc82756db71ae6c9f9bc08d5257beb82fda47975755d3f98c6",
+    "retrieval/retrieval.py": "707516280c8d6fa601769d82746483d1b7404fc37b6b98269ca648683208914b",
+    "retrieval/evaluation.py": "09c1064ba76dd71870f9e4ab48f3763983addee9ee169a823f2730cca19c6319",
+    "tests/test_corrected_corel_run.py": "8d16b8314a8bb4c7c740a01e00d4702be4ba45866219a866be80840daaa7a490",
+    "tests/test_cache_provenance.py": "b69ef7380c0fd0c7b2e091fa0915c9efa79bfec3a539dfa8ef2827afc06357d9"
+  },
+  "dependency_versions": {
+    "numpy": "1.26.4",
+    "torch": "2.13.0",
+    "Pillow": "12.3.0",
+    "scipy": "1.17.1",
+    "scikit-image": "0.26.0"
+  },
+  "corrected_reference_run": {
+    "path": "<repository-root>\\output\\corrected_corel_v1\\run_20261025T130024Z",
+    "independent_validation_status": "passed",
+    "validation_sha256": "35ff2dd6977f650525d7bece7e48d3af044a69b27bf832c64793b800c93e5ac3",
+    "reproducibility_manifest_sha256": "0836239d7e1fc5c7eccb19cdcec0073b7f9823055d12ac94a55ac6e6f75757b8",
+    "results_sha256": "8290d53f39a85affed2e78ba28a71febeb892a5ea268d67ea5bd7638bc47ebd8",
+    "split_manifest_sha256": "cee8d17765467bbea92fd6654b38e1c9f06e8bf0f3cea246890019ec743efc71",
+    "checkpoint_sha256": "4ebb783437dc984b2a3872ff2b7d1b7e34c40489e430139f345b5d2dd1737f34"
+  },
+  "isolated_clean_reproduction": {
+    "path": "<clean-reproduction-root>\\output\\clean_reproduction\\run_20261025T140937Z",
+    "source_revision": "d3374a5e3a2b175efe38a46eeff7cfe8a4df3ca6",
+    "independent_validation_status": "passed",
+    "results_sha256": "1e50bc6ae9baa4e1d1675805ba2834766474115cb3d178efbfb9ddd5d292ab0c",
+    "checkpoint_sha256": "2db9afc94403fc2b28d22dae19d0d7cbba6c5ee411a2aeeec6438648bce03a4d",
+    "note": "Full pipeline run in an isolated output/worktree; exact aggregate metrics matched the corrected reference for all six models."
+  },
+  "legacy_overwrite_guard": {
+    "verification_command": "python main.py --stage part1",
+    "observed_exit_code": 2,
+    "expected": "refused because fixed-path cache exists; no output written",
+    "opt_in_flag": "--allow-overwrite-results"
+  },
+  "tests": {
+    "command": "python -m unittest discover -s tests",
+    "result": "34 tests passed",
+    "compile_command": "python -m compileall -q .",
+    "result_compile": "passed",
+    "diff_command": "git diff --check",
+    "result_diff": "passed (one pre-existing LF/CRLF warning only)"
+  },
+  "commands_executed": [
+    "python corrected_corel_run.py --dataset-root \"<Corel-1K dataset root>\" --output-root \"<clean-reproduction-root>\\output\\clean_reproduction\"",
+    "python corrected_corel_run.py --dataset-root \"<Corel-1K dataset root>\" --query-seed SEED --mlp-seed SEED --group-disjoint-queries --output-root \"output\\corrected_corel_robustness_v1\\runs\\seed_SEED\" (SEED=42,123,2025,31415,271828)",
+    "python validate_corrected_corel_run.py RUN_DIRECTORY (each run; passed)",
+    "python validate_external_run.py --run-dir \"output\\external_transfer_oxford_pet_corrected_v1\\run_20261025T131708149568Z\" (passed)",
+    "python -m unittest discover -s tests (34 passed)",
+    "python -m compileall -q . (passed)",
+    "git diff --check (passed)",
+    "python main.py --stage part1 (expected safe refusal, exit 2)"
+  ],
+  "final_signoff_artifact_hashes_sha256": {
+    "release_readiness_report.md": "001d5106d9f518b0d133d548439bbc46245df282dad50d1e0e283b6b4bc6b9c4",
+    "seed_plan.json": "f9532aedf979c9c456a5945d4eee0e28e46cf5f6ee1c8147918108341e6fed3d",
+    "per_seed_comparison.csv": "4f9fa7486e1c47e3584601a0953d7d618160c1870d26c6ca22aa0e47dc1636bb",
+    "category_seed_differences.csv": "c1adc3591ad44ad06fdf4ff7bd5560ded5da4bc3038477b58317491d5e5e6273",
+    "query_overlap.csv": "cf6454386bc89740603f949be9ea63e98f277b47558f113ef842f59a9792ed52"
+  },
+  "robustness_run_hashes_sha256": {
+    "42": {
+      "experiment_config.json": "377f94e7349e418b0dc77f3440269fab856d660366aa6b5d4c384db0a271b72c",
+      "split_manifest.csv": "7d290580a69e44aa738eff37a8cb83bda3c3be5910f7694b5f0eaf80864ba7d7",
+      "duplicate_audit.json": "a85318615218541c73bae5561ae4478372c63486f0d9f96aa2ea791e9df483f3",
+      "m5_checkpoint.pt": "5854ffbdaeef5d128deff13b3c52dce99e7f38c155b165627502598e3803a6b2",
+      "results.json": "a8a950df8aa50e919e540f067cd6aebb73558c88011ea1b70996f147bd329baa",
+      "rankings.npz": "e2cf3bec8a0684c7466540b288c60228fd62492ab5ccdd2b93bf6241a42696e9",
+      "per_query_metrics.csv": "5b6b6c3c4b958823108bb6bf0a80bca52e15cf5f411e6ba059f6883b0238536e",
+      "per_query_weights.csv": "101668b4f0708289e6921a31de5a9bea7521615685562f9a6175e59500868aa5",
+      "independent_validation.json": "0aa601f7c81e1643a107222dfce693e81db8c9d769140428b73d4d776af7ef2e",
+      "reproducibility_manifest.json": "f5e523d7fa41378c3a265d7b728fc2021ec924c86f9c6464a02d6d7789255df5"
+    },
+    "123": {
+      "experiment_config.json": "fe54eb1a0ddb2b1247bdeaa60d7239897b8b8f3ec414b4eecaac553e24247abc",
+      "split_manifest.csv": "5da107435d29b4ac072d07fc7020cfc582b45c2893512e0a12df9b7b2f6027e4",
+      "duplicate_audit.json": "a85318615218541c73bae5561ae4478372c63486f0d9f96aa2ea791e9df483f3",
+      "m5_checkpoint.pt": "903917e84309d1f53c882d4044992d73933eed92179b46a0ac54617789729edf",
+      "results.json": "1794d08cb04dda4956bced0be3532d384df4811d45967ad88aff9e58ba74cf3c",
+      "rankings.npz": "86b42254eb4aa1ea2e7095b933f841ebfd8eb2a065379b40ac8750d03542c4c8",
+      "per_query_metrics.csv": "7003fd947c18ba12896ac95c2e83ff437eebc40c765c91b5d54bfb6af749b611",
+      "per_query_weights.csv": "9a3b9de412e9c38c1d76ac26c92ee83a7da209b6d7204dd370fd7bd1ca08d957",
+      "independent_validation.json": "3782c667a5d200965cfb9d78a325a704f503c6cf6828315b10878d17986df4c3",
+      "reproducibility_manifest.json": "c8d009a15b2d75d8cf9e35b2dee78e99fa0dd5a12e7b1b792be81accf0a3397b"
+    },
+    "2025": {
+      "experiment_config.json": "f8f88324435876c3bc4ae1ae0f52da6eab1897a64ebe2c5a85c0fb41bdeffd3a",
+      "split_manifest.csv": "df37b9c4a6559b5c19d1cd72c8ab0c3618a372e0a5e7b02a6f79b5f417954794",
+      "duplicate_audit.json": "a85318615218541c73bae5561ae4478372c63486f0d9f96aa2ea791e9df483f3",
+      "m5_checkpoint.pt": "41983c1dac170d7f76124f849c09f05391e01a339de93bd131450ce67a47a1f0",
+      "results.json": "c722f42d246a2bf630fb308ec30b07dae626a4642cbeaa4af82db02ff5645eed",
+      "rankings.npz": "58493a990a71af84a22152b5c6a48037f65cac0db8750b1d592a2da394a4e62e",
+      "per_query_metrics.csv": "f12392287dcd8c352a8270c743a335afa9be816447efda8638fad1eb58121eb0",
+      "per_query_weights.csv": "54f2791753b10a3881ea10e8598f4fe4a66439e60cb369f4a0b9ca5e2300ec2a",
+      "independent_validation.json": "a02b11b26bb0a44dea2c9112d22c67498f3e30ca7cc308a25fd7051b1421b807",
+      "reproducibility_manifest.json": "71ed8ef5a296c12cca80f2862df4e2cfb4977edf5270e4eea0ced77f3cefc17c"
+    },
+    "31415": {
+      "experiment_config.json": "66ac5bd97ee746f39ff180d47a1f4a8f48d0c3235a91d22658ae3735eff1e882",
+      "split_manifest.csv": "b4274c1ee5833431c1a6af6bff5eeaeb4eafdf729c2e4938bc46d4eeb566eb41",
+      "duplicate_audit.json": "a85318615218541c73bae5561ae4478372c63486f0d9f96aa2ea791e9df483f3",
+      "m5_checkpoint.pt": "912568e2ba51d120531190998b1969268008b98efb1da4b881e30045839e495f",
+      "results.json": "3da16d53988d41f57446a307e6d928d627b33d92b6ba842963eaa48b50ce8c54",
+      "rankings.npz": "4a37e80defa7532f0a059b8790c5110af35cb13bc8d6102b7fa14327697c357b",
+      "per_query_metrics.csv": "c472928a25a9b4cb51d41947809a0217eb7997e350ef40e39394228fecfd2988",
+      "per_query_weights.csv": "fd33761e59e1403f816bac265224435b30e5024e88ab627da637e6d2b682a1ed",
+      "independent_validation.json": "e0c9192f83ec1a28d00bf58bf2c25f120fb057e2365a7e149c42706ee221d2d5",
+      "reproducibility_manifest.json": "bcef7637100df0ca25faea1deb7ae170a6ed43a154e40b2cd4170d15df3608de"
+    },
+    "271828": {
+      "experiment_config.json": "66600f32bba1eac528bbd86241aaaae7cd648417d083b84ed4083f1fcc06060f",
+      "split_manifest.csv": "96cb5b3b384ea9ff3f09493bf555362af0cdaa8201bcde940eeda3205887c270",
+      "duplicate_audit.json": "a85318615218541c73bae5561ae4478372c63486f0d9f96aa2ea791e9df483f3",
+      "m5_checkpoint.pt": "1a4cd8886a29752c2332ad87b983f542f89350c31a08ba2e512c8735d8fd9775",
+      "results.json": "37da47777b0d580c121f87caffae4fc18ee552b2a56d3a5811f2eabadbbc908b",
+      "rankings.npz": "0d10ad5fd9d928da9544df0f9ea27d21e44db1903e91c361258db6179c7bf15e",
+      "per_query_metrics.csv": "929070e766a76664c4389cc464d7428feab5ad593eae3b5136b91b2873cefac3",
+      "per_query_weights.csv": "c6ff669b186e0bdc2fcb379e2eaca2a5678960b474e0d5981050f2ef3ff22ecd",
+      "independent_validation.json": "38120dc2b6f6e91837663c9a9d6faa0c14209e08ec3491d07f8dd76e37fc066c",
+      "reproducibility_manifest.json": "75dda724fee3d2abe144112abafbe21db819afd009c957d0f11009b25a566f9a"
+    }
+  },
+  "final_manifest_updated_at_note": "Dirty-worktree status captured after the sign-off report and all generated audit artifacts were written."
+}

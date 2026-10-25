@@ -13,7 +13,24 @@ def evaluate_retrieval(ranked_indices, gallery_labels, query_label, k=10):
     Returns:
         dict: Metrics for this query.
     """
-    gallery_labels_arr = np.array(gallery_labels)
+    if not isinstance(k, (int, np.integer)) or k <= 0:
+        raise ValueError("k must be a positive integer.")
+    ranked_indices = np.asarray(ranked_indices)
+    gallery_labels_arr = np.asarray(gallery_labels)
+    if ranked_indices.ndim != 1:
+        raise ValueError("Ranked indices must be one-dimensional.")
+    if not np.issubdtype(ranked_indices.dtype, np.integer):
+        raise ValueError("Ranked indices must contain integers.")
+    if gallery_labels_arr.ndim != 1:
+        raise ValueError("Gallery labels must be one-dimensional.")
+    if len(ranked_indices) != len(gallery_labels_arr):
+        raise ValueError("The ranking length must match the gallery label count.")
+    if k > len(ranked_indices):
+        raise ValueError("k cannot exceed the gallery size.")
+    if not np.array_equal(
+        np.sort(ranked_indices), np.arange(len(gallery_labels_arr))
+    ):
+        raise ValueError("Ranked indices must be a permutation of the gallery.")
     ranked_labels = gallery_labels_arr[ranked_indices]
     
     # Relevance mask (1 for relevant, 0 for non-relevant)
@@ -67,6 +84,25 @@ def evaluate_all(all_ranked_indices, gallery_labels, query_labels, retrieval_tim
     Returns:
         dict: Mean evaluation metrics.
     """
+    if len(all_ranked_indices) != len(query_labels):
+        raise ValueError("The number of rankings must match the number of query labels.")
+    if len(retrieval_times) != len(query_labels):
+        raise ValueError("The number of retrieval times must match the number of queries.")
+    if not query_labels:
+        raise ValueError("At least one query is required for evaluation.")
+    if any(
+        not np.all(np.isfinite(np.asarray(ranking)))
+        or not np.array_equal(
+            np.sort(np.asarray(ranking)), np.arange(len(gallery_labels))
+        )
+        for ranking in all_ranked_indices
+    ):
+        raise ValueError("Each ranking must be a permutation of the gallery indices.")
+    if not np.all(np.isfinite(np.asarray(retrieval_times, dtype=float))):
+        raise ValueError("Retrieval times must be finite.")
+    if np.any(np.asarray(retrieval_times, dtype=float) < 0):
+        raise ValueError("Retrieval times cannot be negative.")
+
     precisions = []
     recalls = []
     f1s = []

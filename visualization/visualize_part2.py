@@ -11,14 +11,17 @@ sns.set_theme(style="white")
 
 def plot_m1_m5_metric_comparison(results, metric_name, ylabel, title, save_path):
     """
-    Plots a bar chart comparing metrics for M1, M2, M3, M4, and M5.
+    Plots a bar chart comparing metrics for M1 through M6.
     """
     plt.figure(figsize=(7.5, 5))
-    models = ['M1', 'M2', 'M3', 'M4', 'M5']
+    models = ['M1', 'M2', 'M3', 'M4', 'M5', 'M6']
     values = [results[m] for m in models]
+    is_time = 'time' in metric_name.lower()
+    if is_time:
+        values = [value * 1000 for value in values]
     
     # Harmony color palette
-    colors = ['#1565C0', '#00897B', '#EF6C00', '#C62828', '#6A1B9A'] # deep blue, green, orange, red, purple
+    colors = ['#1565C0', '#00897B', '#EF6C00', '#C62828', '#6A1B9A', '#546E7A']
     
     bars = plt.bar(models, values, color=colors, edgecolor='none', width=0.55)
     
@@ -26,8 +29,8 @@ def plot_m1_m5_metric_comparison(results, metric_name, ylabel, title, save_path)
     max_val = max(values) if values else 1.0
     for bar in bars:
         height = bar.get_height()
-        if 'time' in metric_name.lower():
-            label = f"{height*1000:.2f} ms"
+        if is_time:
+            label = f"{height:.2f} ms"
         else:
             label = f"{height:.4f}"
         plt.text(

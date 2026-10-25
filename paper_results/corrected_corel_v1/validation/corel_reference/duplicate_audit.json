@@ -1,0 +1,29 @@
+{
+    "dataset_path":  "\u003cexternal Corel-1K dataset root\u003e",
+    "image_count":  1000,
+    "hash_algorithm":  "SHA-256",
+    "perceptual_hash":  "32x32 grayscale DCT, top-left 8x8, median threshold",
+    "near_duplicate_hamming_threshold":  4,
+    "exact_duplicate_pair_count":  0,
+    "exact_duplicate_pairs":  [
+
+                              ],
+    "near_duplicate_candidates":  [
+                                      {
+                                          "left_path":  "training_set/horses/761.jpg",
+                                          "right_path":  "training_set/horses/776.jpg",
+                                          "perceptual_hash_distance":  4,
+                                          "visual_review":  "confirmed same scene and pose",
+                                          "excluded_from_gallery":  [
+                                                                        "training_set/horses/761.jpg"
+                                                                    ]
+                                      }
+                                  ],
+    "excluded_gallery_paths":  [
+                                   "training_set/horses/761.jpg"
+                               ],
+    "all_queries_retained":  true,
+    "query_gallery_duplicate_candidates_after_exclusion":  0,
+    "remaining_train_validation_duplicate_groups":  0,
+    "visual_review_scope":  "The only thresholded pHash pair was reviewed side by side."
+}

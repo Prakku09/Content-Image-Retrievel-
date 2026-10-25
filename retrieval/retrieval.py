@@ -1,6 +1,7 @@
 import numpy as np
 import config
 
+
 def get_representation(color_feats, texture_feats, model_name):
     """
     Constructs the feature representation for a given model (M1, M2, M3, M4).
@@ -27,6 +28,60 @@ def get_representation(color_feats, texture_feats, model_name):
         return np.hstack([wc * color_feats, wt * texture_feats])
     else:
         raise ValueError(f"Unknown model name: {model_name}")
+
+
+def validate_fusion_weights(weights, atol=1e-6):
+    """Validate one or more colour/texture weight pairs without changing them."""
+    weights = np.asarray(weights)
+    if not np.issubdtype(weights.dtype, np.number) or np.issubdtype(
+        weights.dtype, np.complexfloating
+    ):
+        raise ValueError("Fusion weights must be real numeric values.")
+    if weights.ndim not in (1, 2) or weights.shape[-1] != 2:
+        raise ValueError("Fusion weights must have shape (2,) or (N, 2).")
+    weights_float = weights.astype(np.float64, copy=False)
+    if not np.all(np.isfinite(weights_float)):
+        raise ValueError("Fusion weights must be finite.")
+    if np.any(weights_float < 0):
+        raise ValueError("Fusion weights must be non-negative.")
+    if not np.allclose(
+        np.sum(weights_float, axis=-1), 1.0, atol=atol, rtol=0.0
+    ):
+        raise ValueError(f"Fusion weights must sum to one within {atol}.")
+    return weights
+
+
+def weighted_euclidean_distances(
+    query_color, gallery_color, query_texture, gallery_texture, weights
+):
+    """
+    Compute the M5/M6 direct-weight distance:
+    sqrt(w_colour * d_colour**2 + w_texture * d_texture**2).
+    """
+    weights = validate_fusion_weights(weights)
+    if weights.ndim != 1:
+        raise ValueError("A single query requires exactly one fusion weight pair.")
+
+    query_color = np.asarray(query_color)
+    gallery_color = np.asarray(gallery_color)
+    query_texture = np.asarray(query_texture)
+    gallery_texture = np.asarray(gallery_texture)
+    if query_color.ndim != 1 or query_texture.ndim != 1:
+        raise ValueError("Query colour and texture features must be one-dimensional.")
+    if gallery_color.ndim != 2 or gallery_texture.ndim != 2:
+        raise ValueError("Gallery colour and texture features must be two-dimensional.")
+    if gallery_color.shape[0] != gallery_texture.shape[0]:
+        raise ValueError("Colour and texture galleries must have the same size.")
+    if gallery_color.shape[1] != query_color.shape[0]:
+        raise ValueError("Query and gallery colour feature dimensions must match.")
+    if gallery_texture.shape[1] != query_texture.shape[0]:
+        raise ValueError("Query and gallery texture feature dimensions must match.")
+
+    color_dist_sq = np.sum((gallery_color - query_color) ** 2, axis=1)
+    texture_dist_sq = np.sum((gallery_texture - query_texture) ** 2, axis=1)
+    squared_distances = weights[0] * color_dist_sq + weights[1] * texture_dist_sq
+    return np.sqrt(np.maximum(squared_distances, 0.0))
+
 
 def retrieve_images(query_feat, gallery_feats):
     """
